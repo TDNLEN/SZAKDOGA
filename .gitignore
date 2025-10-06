@@ -1,0 +1,28 @@
+# --- Unity project ---
+/UnityJatek/[Ll]ibrary/
+/UnityJatek/[Tt]emp/
+/UnityJatek/[Oo]bj/
+/UnityJatek/[Bb]uild/
+/UnityJatek/[Bb]uilds/
+/UnityJatek/[Ll]ogs/
+/UnityJatek/[Uu]serSettings/
+
+/UnityJatek/[Mm]emoryCaptures/
+/UnityJatek/[Rr]ecordings/
+
+# VS/JetBrains
+/.vs/
+/.vscode/
+/.idea/
+/UnityJatek/*.csproj
+/UnityJatek/*.sln
+/UnityJatek/*.user
+/UnityJatek/*.unityproj
+/UnityJatek/*.pidb
+/UnityJatek/*.suo
+/UnityJatek/*.tmp
+/UnityJatek/*.svd
+
+# OS
+.DS_Store
+Thumbs.db
