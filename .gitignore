@@ -1,28 +1,27 @@
-# --- Unity project ---
-/UnityJatek/[Ll]ibrary/
-/UnityJatek/[Tt]emp/
-/UnityJatek/[Oo]bj/
-/UnityJatek/[Bb]uild/
-/UnityJatek/[Bb]uilds/
-/UnityJatek/[Ll]ogs/
-/UnityJatek/[Uu]serSettings/
+# --- Unity project (Cirmos) ---
+/UnityJatek/Cirmos/[Ll]ibrary/
+/UnityJatek/Cirmos/[Tt]emp/
+/UnityJatek/Cirmos/[Oo]bj/
+/UnityJatek/Cirmos/[Bb]uild/
+/UnityJatek/Cirmos/[Bb]uilds/
+/UnityJatek/Cirmos/[Ll]ogs/
+/UnityJatek/Cirmos/[Uu]serSettings/
+/UnityJatek/Cirmos/[Mm]emoryCaptures/
+/UnityJatek/Cirmos/[Rr]ecordings/
 
-/UnityJatek/[Mm]emoryCaptures/
-/UnityJatek/[Rr]ecordings/
-
-# VS/JetBrains
+# IDE/Editor
 /.vs/
 /.vscode/
 /.idea/
-/UnityJatek/*.csproj
-/UnityJatek/*.sln
-/UnityJatek/*.user
-/UnityJatek/*.unityproj
-/UnityJatek/*.pidb
-/UnityJatek/*.suo
-/UnityJatek/*.tmp
-/UnityJatek/*.svd
+/UnityJatek/Cirmos/*.csproj
+/UnityJatek/Cirmos/*.sln
+/UnityJatek/Cirmos/*.user
+/UnityJatek/Cirmos/*.unityproj
+/UnityJatek/Cirmos/*.pidb
+/UnityJatek/Cirmos/*.suo
+/UnityJatek/Cirmos/*.tmp
+/UnityJatek/Cirmos/*.svd
 
-# OS
+# OS szemét
 .DS_Store
 Thumbs.db
