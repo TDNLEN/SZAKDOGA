@@ -3,14 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyFollow : MonoBehaviour
 {
-    public Transform target;              // ha üres, Start-ban megkeressük a "Player"-t
+    public Transform target;
     public float moveSpeed = 2.5f;
     public float stoppingDistance = 0.3f;
-
-    [Header("Animator (opcionális)")]
-    public Animator animator;             // ha van animator a zombin
-    public string speedParam = "Speed";   // float
-    public string movingBoolParam = "";   // ha boolt használsz pl. "IsMoving"
 
     private Rigidbody2D rb;
     private Vector2 velocity;
@@ -18,8 +13,6 @@ public class EnemyFollow : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (animator == null) animator = GetComponent<Animator>();
-
     }
 
     private void Start()
@@ -27,7 +20,8 @@ public class EnemyFollow : MonoBehaviour
         if (target == null)
         {
             var player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null) target = player.transform;
+            if (player != null)
+                target = player.transform;
         }
     }
 
@@ -40,7 +34,6 @@ public class EnemyFollow : MonoBehaviour
         Vector2 toTarget = tgt - pos;
         float dist = toTarget.magnitude;
 
-
         if (dist > stoppingDistance)
         {
             Vector2 dir = toTarget.normalized;
@@ -52,13 +45,12 @@ public class EnemyFollow : MonoBehaviour
             velocity = Vector2.zero;
         }
 
+        // irányfordítás
         if (velocity.x != 0f)
         {
             Vector3 s = transform.localScale;
             s.x = Mathf.Abs(s.x) * (velocity.x > 0 ? 1 : -1);
             transform.localScale = s;
         }
-
-      
     }
 }
