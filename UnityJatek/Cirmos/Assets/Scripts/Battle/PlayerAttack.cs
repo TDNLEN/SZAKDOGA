@@ -41,19 +41,32 @@ public class PlayerAttack : MonoBehaviour
 
     private void TryAttack()
     {
-        if (playerCombat != null && !playerCombat.HasWeapon)
-            return;
+        // kell fegyver
+        if (playerCombat != null && !playerCombat.HasWeapon) return;
 
-        if (Time.time - lastAttackTime < attackCooldown)
-            return;
+        // a kézben lévő fegyver:
+        var weaponGO = playerCombat != null ? playerCombat.equippedSword : null;
 
+        // ha pisztoly
+        var gun = weaponGO ? weaponGO.GetComponent<GunWeapon>() : null;
+        if (gun != null)
+        {
+            // irány: a player X skálájának előjele alapján (jobb/bal)
+            float sign = Mathf.Sign(transform.localScale.x == 0 ? 1f : transform.localScale.x);
+            var dir = Vector2.right * sign;
+
+            gun.TryShoot(dir, (Vector2)transform.position);
+            if (playerCombat != null) playerCombat.PlayWeaponAttackAnim();
+            return;
+        }
+
+        // --- MELEE fallback (axe stb.) ---
+        if (Time.time - lastAttackTime < attackCooldown) return;
         lastAttackTime = Time.time;
 
         attacking = true;
         timer = 0f;
         if (attackArea) attackArea.SetActive(true);
-
-        if (playerCombat != null)
-            playerCombat.PlayWeaponAttackAnim();
+        if (playerCombat != null) playerCombat.PlayWeaponAttackAnim();
     }
 }
