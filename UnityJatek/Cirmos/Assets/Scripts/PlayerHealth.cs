@@ -11,7 +11,6 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI References")]
     public Image healthBarFill; // ide húzd be a zöld UI Image-et (HealthBarFill)
-    private float startWidth;
 
     [Header("Sprite Flash")]
     public SpriteRenderer sprite;  // ide húzd be a Player SpriteRenderer-t
@@ -28,9 +27,6 @@ public class PlayerHealth : MonoBehaviour
         if (sprite != null)
             originalColor = sprite.color;
 
-        if (healthBarFill != null)
-            startWidth = healthBarFill.rectTransform.localScale.x;
-
         UpdateHealthBar();
     }
 
@@ -45,27 +41,27 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(HitFlash());
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     private void UpdateHealthBar()
     {
         if (healthBarFill == null) return;
 
-        float t = (float)currentHealth / maxHealth;
-        healthBarFill.rectTransform.localScale = new Vector3(t, 1f, 1f);
+        float t = Mathf.Clamp01((float)currentHealth / maxHealth);
 
-        // 🔹 Ezzel toljuk el balról jobbra
-        float offset = (1f - t) * (healthBarFill.rectTransform.rect.width / 2f);
-        healthBarFill.rectTransform.localPosition = new Vector3(-offset, 0, 0);
+        // skálázás X irányban (0..1)
+        var rt = healthBarFill.rectTransform;
+        rt.localScale = new Vector3(t, 1f, 1f);
+
+        // balról rövidüljön: a pivot marad középen, ezért eltoljuk balra
+        float offset = (1f - t) * (rt.rect.width / 2f);
+        rt.localPosition = new Vector3(-offset, 0f, 0f);
     }
 
     private IEnumerator HitFlash()
     {
         if (sprite == null) yield break;
-
         sprite.color = hitColor;
         yield return new WaitForSeconds(hitFlashTime);
         sprite.color = originalColor;
@@ -75,13 +71,12 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Player meghalt!");
-        // később ide jöhet respawn / game over képernyő
+        // TODO: respawn / game over
     }
 
     public void Heal(int amount)
     {
         if (isDead) return;
-
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         UpdateHealthBar();
     }

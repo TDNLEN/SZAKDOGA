@@ -11,22 +11,17 @@ public class ZombieTouchDamage : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!other.CompareTag(playerTag)) return;
-        if(Time.time <nextHitTime) return; 
+        if (Time.time < nextHitTime) return;
 
-        var health =other.GetComponent<PlayerHealth>();
-        if(health == null) health= other.GetComponentInParent<PlayerHealth>();
+        var health = other.GetComponent<PlayerHealth>();
+        if (health == null) health = other.GetComponentInParent<PlayerHealth>();
         if (health == null) return;
-
+            
+        // ha a szülõ zombi halott, ne sebezzen
         var zh = GetComponentInParent<ZombieHealth>();
-        if (zh != null && IsZombieDead(zh)) return;
+        if (zh != null && zh.IsDead) return;
 
         health.TakeDamage(dmg);
         nextHitTime = Time.time + hitCD;
-
-    }
-
-    private bool IsZombieDead(ZombieHealth zh)
-    {
-        return false;
     }
 }

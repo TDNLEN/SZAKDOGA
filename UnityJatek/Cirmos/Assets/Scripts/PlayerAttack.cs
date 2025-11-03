@@ -16,10 +16,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        if (attackArea != null)
+        if (attackArea)
             attackArea.SetActive(false);
 
-        // ha nem húztad be inspectorban, megpróbáljuk magunktól
         if (playerCombat == null)
             playerCombat = GetComponent<PlayerCombat>();
     }
@@ -27,9 +26,7 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             TryAttack();
-        }
 
         if (attacking)
         {
@@ -37,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
             if (timer >= attackDuration)
             {
                 attacking = false;
-                attackArea.SetActive(false);
+                if (attackArea) attackArea.SetActive(false);
             }
         }
     }
@@ -52,14 +49,11 @@ public class PlayerAttack : MonoBehaviour
 
         lastAttackTime = Time.time;
 
-        // bekapcsoljuk a hitboxot
         attacking = true;
         timer = 0f;
-        attackArea.SetActive(true);
+        if (attackArea) attackArea.SetActive(true);
 
-        // + fegyver anim / player anim
         if (playerCombat != null)
             playerCombat.PlayWeaponAttackAnim();
     }
-
 }
