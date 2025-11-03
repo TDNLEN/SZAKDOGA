@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackArea : MonoBehaviour
@@ -6,12 +6,12 @@ public class AttackArea : MonoBehaviour
     public int damage = 1;
     public string targetTag = "Enemy";
 
-    // hogy egy ütés alatt ugyanazt ne üssük meg 5x
+    // hogy egy Ã¼tÃ©s alatt ugyanazt ne Ã¼ssÃ¼k meg 5x
     private HashSet<ZombieHealth> alreadyHit = new HashSet<ZombieHealth>();
 
     private void OnEnable()
     {
-        // minden ütés indulásakor ürítjük
+        // minden Ã¼tÃ©s indulÃ¡sakor Ã¼rÃ­tjÃ¼k
         alreadyHit.Clear();
     }
 
@@ -22,7 +22,7 @@ public class AttackArea : MonoBehaviour
         ZombieHealth health = collision.GetComponent<ZombieHealth>();
         if (health == null) return;
 
-        // ha már megütöttük ebben a swingben, ne üssük újra
+        // ha mÃ¡r megÃ¼tÃ¶ttÃ¼k ebben a swingben, ne Ã¼ssÃ¼k Ãºjra
         if (alreadyHit.Contains(health)) return;
 
         health.TakeDamage(damage);

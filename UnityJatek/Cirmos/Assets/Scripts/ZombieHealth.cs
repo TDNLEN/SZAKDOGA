@@ -9,21 +9,26 @@ public class ZombieHealth : MonoBehaviour
     private bool isDead = false;
 
     [Header("Health bar")]
-    public Transform barFill;          // a piros csík
+    public Transform barFill;          // a piros csï¿½k
     private float startScaleX;
 
     [Header("Animator")]
-    public Animator animator;          // húzd be a zombiról
+    public Animator animator;          // hï¿½zd be a zombirï¿½l
     public string dieTriggerName = "Die";
 
     [Header("Hit flash")]
-    public SpriteRenderer sprite;      // húzd be a zombiról
+    public SpriteRenderer sprite;      // hï¿½zd be a zombirï¿½l
     public Color hitColor = Color.red;
     public float hitFlashTime = 0.1f;
     private Color originalColor;
 
+    [Header("Knockback")]
+    public float knockbackForce = 5f;
+    public float knockbackDuration = 0.1f;
+    private Rigidbody2D rb;
+
     [Header("Cleanup")]
-    public float destroyAfterDeath = 1.0f; // animáció után ennyi idõvel tûnjön el
+    public float destroyAfterDeath = 1.0f; // animï¿½ciï¿½ utï¿½n ennyi idï¿½vel tï¿½njï¿½n el
 
     private void Awake()
     {
@@ -32,7 +37,7 @@ public class ZombieHealth : MonoBehaviour
         if (barFill != null)
             startScaleX = barFill.localScale.x;
 
-        // ha nem húztad be inspectorban, próbáljuk megkeresni
+        // ha nem hï¿½ztad be inspectorban, prï¿½bï¿½ljuk megkeresni
         if (animator == null)
             animator = GetComponent<Animator>();
 
@@ -41,19 +46,24 @@ public class ZombieHealth : MonoBehaviour
 
         if (sprite != null)
             originalColor = sprite.color;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(int dmg, Vector2? hitSource = null)
     {
-        if (isDead) return; // ha már haldoklik, ne sebezzen tovább
+        if (isDead) return; // ha mï¿½r haldoklik, ne sebezzen tovï¿½bb
 
         currentHealth -= dmg;
         if (currentHealth < 0) currentHealth = 0;
 
         UpdateBar();
 
-        // villanás
+        // villanï¿½s
         StartCoroutine(HitFlash());
+
+        if (hitSource.HasValue)
+            ApplyKnockback(hitSource.Value);
 
         if (currentHealth <= 0)
         {
@@ -67,10 +77,10 @@ public class ZombieHealth : MonoBehaviour
 
         float t = (float)currentHealth / maxHealth;
 
-        // új méret
+        // ï¿½j mï¿½ret
         barFill.localScale = new Vector3(startScaleX * t, barFill.localScale.y, barFill.localScale.z);
 
-        // új pozíció — a bal oldalt rögzítjük, és jobbról rövidül
+        // ï¿½j pozï¿½ciï¿½ ï¿½ a bal oldalt rï¿½gzï¿½tjï¿½k, ï¿½s jobbrï¿½l rï¿½vidï¿½l
         float offset = (startScaleX - startScaleX * t) / 2f;
         barFill.localPosition = new Vector3(-offset, barFill.localPosition.y, barFill.localPosition.z);
     }
@@ -80,15 +90,15 @@ public class ZombieHealth : MonoBehaviour
     {
         isDead = true;
 
-        // ha van enemy mozgás scripted, itt letilthatod
+        // ha van enemy mozgï¿½s scripted, itt letilthatod
         var follow = GetComponent<EnemyFollow>();
         if (follow) follow.enabled = false;
 
-        // animatornak szólunk
+        // animatornak szï¿½lunk
         if (animator != null && !string.IsNullOrEmpty(dieTriggerName))
             animator.SetTrigger(dieTriggerName);
 
-        // ha nem akarsz eventet, idõ után eltüntetjük
+        // ha nem akarsz eventet, idï¿½ utï¿½n eltï¿½ntetjï¿½k
         Destroy(gameObject, destroyAfterDeath);
     }
 
@@ -101,7 +111,23 @@ public class ZombieHealth : MonoBehaviour
         sprite.color = originalColor;
     }
 
-    // ha inkább animációs eventtel akarod eltüntetni, akkor az anim klip végén hívd ezt:
+    private void ApplyKnockback(Vector2 hitSource)
+    {
+        if (rb == null) return;
+
+        Vector2 knockDir = ((Vector2)transform.position - hitSource).normalized;
+        rb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
+
+        StartCoroutine(StopKnockback());
+
+    }
+    private IEnumerator StopKnockback()
+    {
+        yield return new WaitForSeconds(knockbackDuration);
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
+    // ha inkï¿½bb animï¿½ciï¿½s eventtel akarod eltï¿½ntetni, akkor az anim klip vï¿½gï¿½n hï¿½vd ezt:
     public void OnDeathEnd()
     {
         Destroy(gameObject);
