@@ -3,12 +3,12 @@
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Refs")]
-    public GameObject attackArea;           // ide húzod a hitboxot
-    public PlayerCombat playerCombat;       // ide húzod a PlayerCombatot
+    public GameObject attackArea;      // melee hitbox
+    public PlayerCombat playerCombat;  // PlayerCombat a Playeren
 
     [Header("Timing")]
-    public float attackDuration = 0.25f;
-    public float attackCooldown = 0.4f;
+    public float attackDuration = 0.25f; // meddig legyen aktív a melee hitbox
+    public float attackCooldown = 0.4f;  // két melee ütés közt mennyi idő teljen el
 
     private bool attacking = false;
     private float timer = 0f;
@@ -41,32 +41,48 @@ public class PlayerAttack : MonoBehaviour
 
     private void TryAttack()
     {
-        // kell fegyver
-        if (playerCombat != null && !playerCombat.HasWeapon) return;
+        // nincs fegyver -> semmi
+        if (playerCombat == null || !playerCombat.HasWeapon)
+            return;
 
-        // a kézben lévő fegyver:
-        var weaponGO = playerCombat != null ? playerCombat.equippedSword : null;
+        var weaponGO = playerCombat.equippedSword;
 
-        // ha pisztoly
-        var gun = weaponGO ? weaponGO.GetComponent<GunWeapon>() : null;
+        // próbáljunk ranged fegyvert keresni
+        GunWeapon gun = null;
+        if (weaponGO != null)
+        {
+            gun = weaponGO.GetComponent<GunWeapon>();
+            if (gun == null)
+                gun = weaponGO.GetComponentInChildren<GunWeapon>();
+        }
+
+        // ha van pisztoly / ranged fegyver
         if (gun != null)
         {
-            // irány: a player X skálájának előjele alapján (jobb/bal)
-            float sign = Mathf.Sign(transform.localScale.x == 0 ? 1f : transform.localScale.x);
-            var dir = Vector2.right * sign;
+            // egér pozíció világkoordinátában
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorld.z = 0f;
 
-            gun.TryShoot(dir, (Vector2)transform.position);
-            if (playerCombat != null) playerCombat.PlayWeaponAttackAnim();
+            bool fired = gun.TryShootTowards(mouseWorld);
+            if (fired)
+                playerCombat.PlayWeaponAttackAnim();
+
+            // ranged -> nem ütünk melee-t
             return;
         }
 
-        // --- MELEE fallback (axe stb.) ---
-        if (Time.time - lastAttackTime < attackCooldown) return;
+        // ---- MELEE FALLBACK (balta stb.) ----
+
+        if (Time.time - lastAttackTime < attackCooldown)
+            return;
+
         lastAttackTime = Time.time;
 
         attacking = true;
         timer = 0f;
         if (attackArea) attackArea.SetActive(true);
-        if (playerCombat != null) playerCombat.PlayWeaponAttackAnim();
+
+        playerCombat.PlayWeaponAttackAnim();
     }
 }
+    

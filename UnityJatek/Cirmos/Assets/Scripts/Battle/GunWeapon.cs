@@ -4,26 +4,45 @@ using UnityEngine;
 public class GunWeapon : MonoBehaviour
 {
     [Header("Shooting")]
-    public Bullet bulletPrefab;
+    public GameObject bulletPrefab;   // <- PREFAB, nem komponens!
     public Transform muzzle;          // ha üres, a fegyver pozícióját használjuk
     public float bulletSpeed = 10f;
     public float bulletRange = 8f;    // ennyit repül
     public int damage = 1;
     public float fireCooldown = 0.25f;
 
-    [Header("Targets")]
-    public string targetTag = "Enemy";
-
     private float nextShootTime = 0f;
 
-    
-    public void TryShoot(Vector2 direction, Vector2 hitSource)
+    /// <summary>
+    /// A világban lévõ célpont felé lõ (pl. egér pozíció).
+    /// </summary>
+    public bool TryShootTowards(Vector2 worldTarget)
     {
-        if (Time.time < nextShootTime) return;
+        if (bulletPrefab == null)
+        {
+            Debug.LogWarning("GunWeapon: nincs bulletPrefab beállítva!");
+            return false;
+        }
+
+        if (Time.time < nextShootTime)
+            return false;
+
         nextShootTime = Time.time + fireCooldown;
 
-        var spawn = muzzle != null ? muzzle.position : transform.position;
-        var b = Instantiate(bulletPrefab, spawn, Quaternion.identity);
-        b.Init(direction, bulletSpeed, bulletRange, damage, targetTag);
+        Vector3 spawnPos = muzzle != null ? muzzle.position : transform.position;
+        Vector2 dir = ((Vector2)worldTarget - (Vector2)spawnPos).normalized;
+
+        GameObject go = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+        Bullet b = go.GetComponent<Bullet>();
+        if (b != null)
+        {
+            b.Init(dir, bulletSpeed, damage, bulletRange);
+        }
+        else
+        {
+            Debug.LogWarning("GunWeapon: a bulletPrefab-on nincs Bullet script!");
+        }
+
+        return true;
     }
 }
