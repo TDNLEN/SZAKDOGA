@@ -55,6 +55,7 @@ public class PlayerInventory : MonoBehaviour
         EquipFromSlot(selected);
     }
 
+
     public void SelectNext(int dir)
     {
         int i = (selected + dir) % slotCount;
@@ -124,16 +125,11 @@ public class PlayerInventory : MonoBehaviour
 
     private void UnequipCurrent()
     {
-        if (playerCombat && playerCombat.equippedSword != null)
-        {
-            var go = playerCombat.equippedSword;
-            go.transform.SetParent(null);
-            go.SetActive(false);
-
-            playerCombat.equippedSword = null;
-            if (playerCombat.animator) playerCombat.animator.SetBool("HasAxe", false);
-        }
+        if (playerCombat != null)
+            playerCombat.UnequipCurrent();
     }
+
+
 
     private void DropSelected()
     {

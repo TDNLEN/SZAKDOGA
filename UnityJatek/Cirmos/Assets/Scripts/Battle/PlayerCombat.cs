@@ -3,12 +3,10 @@
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Equip / Holder")]
-    public Transform swordHolder;        // Player/ItemHolder
-    public GameObject equippedSword;     // pl. Axe
+    public Transform swordHolder;
+    public GameObject equippedSword;
 
     private Animator weaponAnimator;
-
-    [Header("Player animator (opcionális)")]
     public Animator animator;
 
     public bool HasWeapon => equippedSword != null;
@@ -22,11 +20,14 @@ public class PlayerCombat : MonoBehaviour
             animator.SetBool("HasAxe", false);
     }
 
-    public void PickUpItem(GameObject weaponObject, Vector3 localPos, Quaternion localRot, Vector3 localScale)
+    public void PickUpItem(GameObject weaponObject,
+                           Vector3 localPos,
+                           Quaternion localRot,
+                           Vector3 localScale)
     {
         if (swordHolder == null)
         {
-            Debug.LogError("Nincs beállítva swordHolder! Húzd be a Player/ItemHolder-t.");
+            Debug.LogError("Nincs beállítva swordHolder!");
             return;
         }
 
@@ -39,13 +40,30 @@ public class PlayerCombat : MonoBehaviour
         if (pickupCol) pickupCol.enabled = false;
 
         equippedSword = weaponObject;
-
         weaponAnimator = weaponObject.GetComponent<Animator>();
-        if (weaponAnimator == null)
-            Debug.LogWarning("A felvett fegyveren nincs Animator!");
 
         if (animator) animator.SetBool("HasAxe", true);
+
+        UpdateCursorForCurrentWeapon();
     }
+
+    // 🔹 Ezt hívd MINDIG, ha fegyvert veszel le a kézről
+    public void UnequipCurrent()
+    {
+        if (equippedSword != null)
+        {
+            var go = equippedSword;
+            go.transform.SetParent(null);
+            go.SetActive(false);
+            equippedSword = null;
+            weaponAnimator = null;   // <- ezt érdemes nullázni, hogy ne lőjünk üresre
+        }
+
+        if (animator) animator.SetBool("HasAxe", false);
+        UpdateCursorForCurrentWeapon();
+    }
+
+
 
     public void PlayWeaponAttackAnim()
     {
@@ -55,4 +73,14 @@ public class PlayerCombat : MonoBehaviour
         if (weaponAnimator != null)
             weaponAnimator.SetTrigger("Attack");
     }
+
+    // csak PlayerCombat használja
+    void UpdateCursorForCurrentWeapon()
+    {
+        if (equippedSword != null && equippedSword.TryGetComponent<GunWeapon>(out _))
+            CursorManager.UseCrosshair();
+        else
+            CursorManager.UseDefault();
+    }
+
 }
