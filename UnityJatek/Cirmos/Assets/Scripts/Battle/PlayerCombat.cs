@@ -44,7 +44,13 @@ public class PlayerCombat : MonoBehaviour
 
         if (animator) animator.SetBool("HasAxe", true);
 
+        // ha gun, szóljunk neki, hogy mostantól kézben van
+        var gun = weaponObject.GetComponent<GunWeapon>();
+        if (gun != null)
+            gun.OnEquip();
+
         UpdateCursorForCurrentWeapon();
+
     }
 
     // 🔹 Ezt hívd MINDIG, ha fegyvert veszel le a kézről
@@ -52,16 +58,22 @@ public class PlayerCombat : MonoBehaviour
     {
         if (equippedSword != null)
         {
+            // ha gun volt, szóljunk neki
+            var gun = equippedSword.GetComponent<GunWeapon>();
+            if (gun != null)
+                gun.OnUnequip();
+
             var go = equippedSword;
             go.transform.SetParent(null);
             go.SetActive(false);
             equippedSword = null;
-            weaponAnimator = null;   // <- ezt érdemes nullázni, hogy ne lőjünk üresre
+            weaponAnimator = null;
         }
 
         if (animator) animator.SetBool("HasAxe", false);
         UpdateCursorForCurrentWeapon();
     }
+
 
 
 
