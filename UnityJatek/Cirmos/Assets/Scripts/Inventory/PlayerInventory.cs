@@ -162,4 +162,39 @@ public class PlayerInventory : MonoBehaviour
         items[selected] = null;
         if (hotbar) hotbar.ClearIcon(selected);
     }
+
+    public bool TryConsumeSelectedFuelItem(out int fuelGained)
+    {
+        fuelGained = 0;
+
+        // ha nincs semmi a kiválasztott slotban
+        var item = items[selected];
+        if (item == null) return false;
+
+        // van-e rajta FuelItem?
+        var fuel = item.GetComponent<FuelItem>();
+        if (fuel == null) return false;
+
+        // mennyi fuel jár érte
+        fuelGained = fuel.fuelAmount;
+
+        // kiszedjük az inventoryból
+        items[selected] = null;
+        if (hotbar) hotbar.ClearIcon(selected);
+
+        // a világban már nincs rá szükség
+        Destroy(item);
+
+        return true;
+    }
+
+    public bool HasFuelInSelectedSlot()
+    {
+        var item = items[selected];
+        if (item == null) return false;
+
+        return item.GetComponent<FuelItem>() != null;
+    }
+
+
 }

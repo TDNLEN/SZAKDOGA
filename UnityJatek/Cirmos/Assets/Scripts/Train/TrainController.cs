@@ -1,175 +1,252 @@
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class TrainController : MonoBehaviour
 {
-    [Header("References")]
-    public Transform player;       // Player
-    public Transform enterPoint;   // �l�s helye a vonaton
-    public Transform exitPoint;    // kisz�ll�si pont
-    public GameObject ePrompt;     // lebeg� "E" ikon
+    [Header("Refs")]
+    public Transform player;
+    public Transform enterPoint;
+    public Transform exitPoint;
 
-    [Header("Settings")]
-    public float enterDistance = 2f;
-    public float moveSpeed = 5f;
-
-    private bool isRiding = false;
-
-    // player komponensek
-    TopDownMover playerMover;
-    PlayerInputReader playerInput;
-    Rigidbody2D playerRb;
-    Collider2D playerCol;
-    SpriteRenderer playerSprite;
-
-    // sprite eredeti layer / order
-    string origLayer;
-    int origOrder;
-
-    // melyik local poziban �lj�n (EnterPoint-hoz m�rten)
-    Vector3 rideLocalPos;
+    [Header("Refuel")]
+    public float refuelRadius = 6f;           // 6 egységen belül lehet tankolni
+    public PlayerInventory playerInventory;   // ide húzd a PlayerInventory-t
+    public GameObject iPrompt;                // I gomb ikon a player fején
 
 
-    public bool IsRiding { get; private set; } = false;
-    public bool IsMoving { get; private set; } = false;   // <<< EZ �J
+    [Header("Enter settings")]
+    public float enterRadius = 2f;
+    public GameObject ePrompt;
 
-    void Start()
+    [Header("Movement")]
+    public float moveSpeed = 4f;
+
+    [Header("Fuel")]
+    public float maxFuel = 100f;
+    public float fuelUsePerSecond = 1f;      // ennyit fogyaszt másodpercenként mozgás közben
+    public TextMeshProUGUI fuelText;         // ide húzd be a TrainFuelText-et
+
+    public bool IsRiding { get; private set; }
+    public bool IsMoving { get; private set; }
+
+    private Rigidbody2D playerRb;
+    private TopDownMover mover;
+
+    private float currentFuel;
+
+    private void Awake()
+    {
+        currentFuel = maxFuel;
+        UpdateFuelUI();
+    }
+
+    private void Start()
     {
         if (player != null)
-        {
-            playerMover = player.GetComponent<TopDownMover>();
-            playerInput = player.GetComponent<PlayerInputReader>();
             playerRb = player.GetComponent<Rigidbody2D>();
-            playerCol = player.GetComponent<Collider2D>();
-            playerSprite = player.GetComponent<SpriteRenderer>();
 
-            if (playerSprite != null)
-            {
-                origLayer = playerSprite.sortingLayerName;
-                origOrder = playerSprite.sortingOrder;
-            }
-        }
+        // induláskor fuel UI legyen kikapcsolva
+        if (fuelText != null)
+            fuelText.gameObject.SetActive(false);
 
+        // E-prompt se világítson alapból
         if (ePrompt != null)
             ePrompt.SetActive(false);
+
+        if (iPrompt != null)
+            iPrompt.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        if (player == null) return;
-
-        if (!isRiding)
+        if (!IsRiding)
+        {
             HandleEnter();
+            HandleRefuelPrompt();   // <-- kívül állva is lehessen tankolni, ha közel vagy
+        }
         else
+        {
             HandleRide();
+            HandleRefuelPrompt();   // <-- a vonatban ülve is mehet tankolás + I_prompt
+        }
     }
 
-    // --- besz�ll�s logika ---
-    void HandleEnter()
+
+    // --- beszállás logika ---
+    private void HandleEnter()
     {
-        if (enterPoint == null) return;
+        if (player == null || enterPoint == null) return;
 
         float dist = Vector2.Distance(player.position, enterPoint.position);
-        bool canEnter = dist <= enterDistance;
+        bool canEnter = dist <= enterRadius;
+
+        // ha a vonat "menne" (később esetleg), akkor se jelezzük
+        bool showPrompt = canEnter && !IsMoving;
 
         if (ePrompt != null)
-            ePrompt.SetActive(canEnter);
+            ePrompt.SetActive(showPrompt);
 
         if (canEnter && Input.GetKeyDown(KeyCode.E))
             EnterTrain();
-        IsMoving = false;
-
     }
 
-    // --- vonaton �l�s k�zben ---
-    void HandleRide()
+
+
+    private void EnterTrain()
     {
+        IsRiding = true;
+        IsMoving = false;
+
+        playerRb = player.GetComponent<Rigidbody2D>();
+        mover = player.GetComponent<TopDownMover>();
+        if (mover) mover.enabled = false;
+
+        // első “ragasztás”
+        player.position = enterPoint.position;
+        if (playerRb) playerRb.linearVelocity = Vector2.zero;
+
+        // E-prompt el
         if (ePrompt != null)
             ePrompt.SetActive(false);
 
-        float h = Input.GetAxisRaw("Horizontal");
-        Vector3 delta = new Vector3(h * moveSpeed * Time.deltaTime, 0f, 0f);
-
-        // CSAK a vonat mozog
-        transform.position += delta;
-
-        // player mindig fixen az �l�sen
-        if (player != null)
-            player.localPosition = rideLocalPos;
-
-        // itt jelezz�k, hogy �pp mozog-e a vonat
-        IsMoving = Mathf.Abs(h) > 0.01f;
-
-        if (Input.GetKeyDown(KeyCode.E))
-            ExitTrain();
+        // fuel UI bekapcs, érték frissítés
+        UpdateFuelUI();
     }
 
-
-    void EnterTrain()
+    private void ExitTrain()
     {
-        isRiding = true;
+        IsRiding = false;
+        IsMoving = false;
 
-        // mozg�s letilt�sa
-        if (playerMover) playerMover.enabled = false;
-        if (playerInput) playerInput.enabled = false;
+        if (mover) mover.enabled = true;
 
-        // fizika off, hogy semmi ne l�kje el
-        if (playerRb)
-        {
-            playerRb.linearVelocity = Vector2.zero;
-            playerRb.angularVelocity = 0f;
-            playerRb.simulated = false;
-        }
-        if (playerCol) playerCol.enabled = false;
-
-        // sprite a vonat m�g�
-        if (playerSprite != null)
-        {
-            playerSprite.sortingLayerName = "Background"; // ugyanaz, mint a train_up_0
-            playerSprite.sortingOrder = -1;
-        }
-
-        // parent = Train + fix poz�ci�
-        player.SetParent(transform);
-
-        if (enterPoint != null)
-        {
-            // kisz�moljuk, hogy az enterPoint a vonat local ter�ben hol van
-            rideLocalPos = transform.InverseTransformPoint(enterPoint.position);
-            player.localPosition = rideLocalPos;
-        }
-        else
-        {
-            rideLocalPos = player.localPosition;
-        }
-    }
-
-    void ExitTrain()
-    {
-        isRiding = false;
-
-        // lev�lasztjuk a vonatr�l
-        player.SetParent(null);
-
-        // sprite vissza
-        if (playerSprite != null)
-        {
-            playerSprite.sortingLayerName = origLayer;
-            playerSprite.sortingOrder = origOrder;
-        }
-
-        // fizika vissza
-        if (playerRb) playerRb.simulated = true;
-        if (playerCol) playerCol.enabled = true;
-
-        // mozg�s enged�lyez�se
-        if (playerMover) playerMover.enabled = true;
-        if (playerInput) playerInput.enabled = true;
-
-        // kil�ptet�s helye
+        // ha akarod, kicsit a vonat mellé rakhatod
         if (exitPoint != null)
             player.position = exitPoint.position;
 
-        IsRiding = false;
-        IsMoving = false;
+        // fuel UI most TUTI el fog tűnni
+        UpdateFuelUI();
+
+        // E-prompt majd csak akkor jelenik meg, ha újra közel mész
+        if (ePrompt != null)
+            ePrompt.SetActive(false);
+    }
+
+    // --- vonaton ülés + mozgás ---
+    private void HandleRide()
+    {
+        if (player == null) return;
+
+        // E – kiszállás
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ExitTrain();
+            return;
+        }
+
+      
+
+        float input = Input.GetAxisRaw("Horizontal");
+
+        // csak akkor mozoghat a vonat, ha VAN fuel
+        bool canMove = currentFuel > 0.01f;
+        IsMoving = canMove && Mathf.Abs(input) > 0.01f;
+
+        if (IsMoving)
+        {
+            Vector3 delta = new Vector3(input, 0f, 0f) * moveSpeed * Time.deltaTime;
+            transform.position += delta;
+
+            // fuel fogyasztás
+            ConsumeFuel(Time.deltaTime);
+        }
+
+        // akár mozog a vonat, akár nem, amíg a vonaton ülünk,
+        // a player pozíciója mindig az EnterPoint legyen.
+        player.position = enterPoint.position;
+
+        // ha van Rigidbody2D, lenullázzuk a sebességét,
+        // hogy semmi ne tudja “kilökni” a vonatból
+        if (playerRb != null)
+            playerRb.linearVelocity = Vector2.zero;
+    }
+
+
+    // --- ÜZEMANYAG ---
+    private void HandleRefuelPrompt()
+    {
+        if (player == null || playerInventory == null || iPrompt == null)
+            return;
+
+        // vonat–player távolság
+        float dist = Vector2.Distance(player.position, transform.position);
+        bool inRange = dist <= refuelRadius;
+
+        // van-e éghető item a kiválasztott slotban?
+        bool hasFuelItem = playerInventory.HasFuelInSelectedSlot();
+
+        // csak akkor engedjük a tankolást, ha nincs tele
+        bool notFull = currentFuel < maxFuel - 0.01f;
+
+        // csak akkor mutassuk az I ikont, ha mindhárom feltétel igaz
+        bool showI = inRange && hasFuelItem && notFull;
+
+        iPrompt.SetActive(showI);
+
+        // ha látszik az I és lenyomja az I-t → tankolás
+        if (showI && Input.GetKeyDown(KeyCode.I))
+        {
+            TryRefuel();
+        }
+        // ha tele van → mindig tűnjön el az ikon (biztonsági)
+        else if (!notFull && iPrompt.activeSelf)
+        {
+            iPrompt.SetActive(false);
+        }
+    }
+
+
+    private void TryRefuel()
+    {
+        if (playerInventory == null) return;
+
+        if (currentFuel >= maxFuel)
+            return; // tele van, fölösleges
+
+        if (playerInventory.TryConsumeSelectedFuelItem(out int fuelGained))
+        {
+            currentFuel = Mathf.Clamp(currentFuel + fuelGained, 0f, maxFuel);
+            UpdateFuelUI();
+            Debug.Log($"Train refueled: +{fuelGained} fuel → {currentFuel}/{maxFuel}");
+        }
+        else
+        {
+            Debug.Log("Nincs égethető item a kiválasztott slotban.");
+        }
+    }
+
+    private void ConsumeFuel(float deltaTime)
+    {
+        currentFuel -= fuelUsePerSecond * deltaTime;
+        currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+        UpdateFuelUI();
+    }
+
+    private void UpdateFuelUI()
+    {
+        if (fuelText == null) return;
+
+        // csak akkor mutatjuk, ha a vonaton ülünk
+        if (!IsRiding)
+        {
+            fuelText.gameObject.SetActive(false);
+            return;
+        }
+
+        fuelText.gameObject.SetActive(true);
+
+        int cur = Mathf.RoundToInt(currentFuel);
+        int max = Mathf.RoundToInt(maxFuel);
+        fuelText.text = $"Fuel: {cur}/{max}";
     }
 }

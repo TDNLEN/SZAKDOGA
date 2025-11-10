@@ -56,4 +56,5 @@ public class ItemPickUp : MonoBehaviour
             col.isTrigger = true;
         }
     }
+
 }
