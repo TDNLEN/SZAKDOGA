@@ -3,11 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\pausemenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\battle\\playercombat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\playercombat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\map\\railgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\map\\railgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\map\\buildingspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\map\\buildingspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\pausemenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pausemenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\ammotype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\battle\\playercombat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\playercombat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\battle\\gunweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\gunweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -46,11 +54,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "RailGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Map\\RailGenerator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Map\\RailGenerator.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Map\\RailGenerator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Map\\RailGenerator.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAADwvz4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T14:54:23.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BuildingSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Map\\BuildingSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Map\\BuildingSpawner.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Map\\BuildingSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Map\\BuildingSpawner.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwBIAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T10:19:35.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "PauseMenuController.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\PauseMenuController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PauseMenuController.cs",
@@ -58,12 +92,11 @@
               "RelativeToolTip": "Assets\\Scripts\\PauseMenuController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T17:27:55.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T17:27:55.584Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "MainMenuController.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\MainMenuController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuController.cs",
@@ -71,12 +104,11 @@
               "RelativeToolTip": "Assets\\Scripts\\MainMenuController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T17:05:18.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T17:05:18.816Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ZombieHealth.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Enemys\\ZombieHealth.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemys\\ZombieHealth.cs",
@@ -88,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "TrainController.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainController.cs",
@@ -100,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "AmmoBox.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\AmmoBox.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\AmmoBox.cs",
@@ -112,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "AmmoType.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\AmmoType.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\AmmoType.cs",
@@ -124,19 +156,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "PlayerCombat.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\PlayerCombat.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\PlayerCombat.cs",
               "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\PlayerCombat.cs",
               "RelativeToolTip": "Assets\\Scripts\\Battle\\PlayerCombat.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAowE0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAFQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T13:30:26.203Z"
+              "WhenOpened": "2025-11-10T13:30:26.203Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "GunWeapon.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\GunWeapon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\GunWeapon.cs",
@@ -148,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "PlayerInventory.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Inventory\\PlayerInventory.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\PlayerInventory.cs",

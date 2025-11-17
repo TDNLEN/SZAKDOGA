@@ -46,14 +46,17 @@ TagManager:
   - name: Background
     uniqueID: 1645532629
     locked: 0
+  - name: Rails
+    uniqueID: 1265071265
+    locked: 0
   - name: Player
     uniqueID: 547514019
     locked: 0
-  - name: Foreground
-    uniqueID: 3643941689
-    locked: 0
   - name: Enemy
     uniqueID: 2315446259
+    locked: 0
+  - name: Foreground
+    uniqueID: 3643941689
     locked: 0
   m_RenderingLayers:
   - Default

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class RailGenerator : MonoBehaviour
@@ -7,10 +7,10 @@ public class RailGenerator : MonoBehaviour
     public Transform player;
 
     [Header("Rail Settings")]
-    public Sprite railSprite;          // ide húzd be a sín sprite-ot
-    public float tileWidth = 1f;       // a sprite szélessége (X tengely mentén)
-    public float railY = 0f;           // magasság, ahol a sínek mennek
-    public int loadRadius = 20;        // hány sín legyen a player körül
+    public Sprite railSprite;          // ide hÃºzd be a sÃ­n sprite-ot
+    public float tileWidth = 1f;       // a sprite szÃ©lessÃ©ge (X tengely mentÃ©n)
+    public float railY = 0f;           // magassÃ¡g, ahol a sÃ­nek mennek
+    public int loadRadius = 20;        // hÃ¡ny sÃ­n legyen a player kÃ¶rÃ¼l
 
     private Dictionary<int, GameObject> spawnedRails = new Dictionary<int, GameObject>();
 
@@ -20,7 +20,7 @@ public class RailGenerator : MonoBehaviour
 
         int playerTileX = Mathf.RoundToInt(player.position.x / tileWidth);
 
-        // balról jobbra megnézzük, melyik sín kell
+        // balrÃ³l jobbra megnÃ©zzÃ¼k, melyik sÃ­n kell
         for (int x = playerTileX - loadRadius; x <= playerTileX + loadRadius; x++)
         {
             if (!spawnedRails.ContainsKey(x))
@@ -29,7 +29,7 @@ public class RailGenerator : MonoBehaviour
             }
         }
 
-        // eltávolítjuk, ami túl messze van
+        // eltÃ¡volÃ­tjuk, ami tÃºl messze van
         List<int> toRemove = new List<int>();
         foreach (var kvp in spawnedRails)
         {
@@ -54,9 +54,13 @@ public class RailGenerator : MonoBehaviour
 
         var sr = railGO.AddComponent<SpriteRenderer>();
         sr.sprite = railSprite;
-        sr.sortingOrder = -50; // ground fölött, de entityk alatt
+
+        // ğŸ”¹ kifejezetten a "Rails" sorting layerre tesszÃ¼k
+        sr.sortingLayerName = "Rails";
+        sr.sortingOrder = -5;   // ezen a layeren belÃ¼l az alap Ã©rtÃ©k bÅ‘ven elÃ©g
 
         spawnedRails.Add(x, railGO);
     }
+
 
 }

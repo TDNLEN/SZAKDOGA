@@ -58,14 +58,23 @@ public class PlayerCombat : MonoBehaviour
     {
         if (equippedSword != null)
         {
-            // ha gun volt, szóljunk neki
+            // ha gun, szóljunk neki
             var gun = equippedSword.GetComponent<GunWeapon>();
             if (gun != null)
                 gun.OnUnequip();
 
+            // 🔹 ANIMATOR RESET, hogy ne maradjon fél-attack állapotban
+            if (weaponAnimator != null)
+            {
+                // minden triggert / állapotot visszaállít
+                weaponAnimator.Rebind();
+                weaponAnimator.Update(0f);   // azonnal érvényesítve
+            }
+
             var go = equippedSword;
             go.transform.SetParent(null);
             go.SetActive(false);
+
             equippedSword = null;
             weaponAnimator = null;
         }
@@ -73,6 +82,7 @@ public class PlayerCombat : MonoBehaviour
         if (animator) animator.SetBool("HasAxe", false);
         UpdateCursorForCurrentWeapon();
     }
+
 
 
 
