@@ -80,4 +80,16 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         UpdateHealthBar();
     }
+
+    public bool IsFullHealth => !isDead && currentHealth >= maxHealth;
+
+    public bool TryHeal(int amount)
+    {
+        if (isDead) return false;
+        if (currentHealth >= maxHealth) return false;
+
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        UpdateHealthBar();
+        return true;
+    }
 }
