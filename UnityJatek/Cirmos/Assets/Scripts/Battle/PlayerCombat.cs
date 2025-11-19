@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Equip / Holder")]
     public Transform swordHolder;
     public GameObject equippedSword;
+
+    [Header("UI")]
+    public TextMeshProUGUI ammoText;
 
     private Animator weaponAnimator;
     public Animator animator;
@@ -21,9 +25,9 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void PickUpItem(GameObject weaponObject,
-                           Vector3 localPos,
-                           Quaternion localRot,
-                           Vector3 localScale)
+                       Vector3 localPos,
+                       Quaternion localRot,
+                       Vector3 localScale)
     {
         if (swordHolder == null)
         {
@@ -44,14 +48,17 @@ public class PlayerCombat : MonoBehaviour
 
         if (animator) animator.SetBool("HasAxe", true);
 
-        // ha gun, szóljunk neki, hogy mostantól kézben van
+        // ha gun, csak az ammoText referenciát adjuk át
         var gun = weaponObject.GetComponent<GunWeapon>();
         if (gun != null)
-            gun.OnEquip();
+        {
+            gun.ammoText = ammoText;
+            // NINCS OnEquip itt
+        }
 
         UpdateCursorForCurrentWeapon();
-
     }
+
 
     // 🔹 Ezt hívd MINDIG, ha fegyvert veszel le a kézről
     public void UnequipCurrent()

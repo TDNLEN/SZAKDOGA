@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\shops\\weaponshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shops\\weaponshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\battle\\bandagepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\bandagepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,15 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WeaponShop.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Shops\\WeaponShop.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Shops\\WeaponShop.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Shops\\WeaponShop.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Shops\\WeaponShop.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAwwI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T15:12:43.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BandagePickup.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\BandagePickup.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BandagePickup.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\BandagePickup.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BandagePickup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:57:09.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PlayerHealth.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHealth.cs",
               "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAA7wFUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAgwEkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T14:55:59.566Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-18T14:55:59.566Z"
             }
           ]
         }

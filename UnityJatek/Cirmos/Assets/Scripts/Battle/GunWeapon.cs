@@ -13,19 +13,28 @@ public class GunWeapon : MonoBehaviour
     public float fireCooldown = 0.25f;
 
     [Header("Ammo")]
+    public AmmoType ammoType = AmmoType.Handgun;
     public int magazineSize = 8;         // tár méret (első szám)
     public int currentMag = 8;           // jelenlegi töltény a tárban
-    public int reserveAmmo = 8;          // tartalék (második szám)
     public float reloadTime = 2f;        // 2 mp reload
-    public TextMeshProUGUI ammoText;     // UI: pl. "8 / 8"
+    public TextMeshProUGUI ammoText;     // UI: pl. "8 / 24"
 
     private float nextShootTime = 0f;
     private bool isEquipped = false;
     private bool isReloading = false;
     private Coroutine reloadRoutine;
 
+    private PlayerInventory ownerInventory;  // <- itt tároljuk, honnan kérünk tartalék lőszert
+
     private void OnEnable()
     {
+        UpdateAmmoUI();
+    }
+
+    /// <summary>PlayerInventory hívja Equipkor.</summary>
+    public void SetOwnerInventory(PlayerInventory inv)
+    {
+        ownerInventory = inv;
         UpdateAmmoUI();
     }
 
@@ -45,9 +54,7 @@ public class GunWeapon : MonoBehaviour
             ammoText.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// A világban lévő célpont felé lő (pl. egér pozíció).
-    /// </summary>
+    /// <summary>A világban lévő célpont felé lő (pl. egér pozíció).</summary>
     public bool TryShootTowards(Vector2 worldTarget)
     {
         if (bulletPrefab == null)
@@ -56,11 +63,9 @@ public class GunWeapon : MonoBehaviour
             return false;
         }
 
-        // ha épp tölt, nem lövünk
         if (isReloading)
             return false;
 
-        // cooldown
         if (Time.time < nextShootTime)
             return false;
 
@@ -101,11 +106,15 @@ public class GunWeapon : MonoBehaviour
         return true;
     }
 
-    // csak akkor induljon reload, ha van tartalék
+    // --- RELOAD LOGIKA ---
+
     private void TryStartReload()
     {
         if (isReloading) return;
-        if (reserveAmmo <= 0) return; // nincs tartalék → nincs reload
+        if (ownerInventory == null) return;
+
+        int reserve = ownerInventory.GetReserveAmmo(ammoType);
+        if (reserve <= 0) return;          // nincs tartalék → nincs reload
 
         reloadRoutine = StartCoroutine(ReloadCoroutine());
     }
@@ -113,21 +122,30 @@ public class GunWeapon : MonoBehaviour
     private System.Collections.IEnumerator ReloadCoroutine()
     {
         isReloading = true;
-        // ide rakhatsz reload anim / hangot is
+        // ide jöhet reload anim / hang
 
         yield return new WaitForSeconds(reloadTime);
 
+        if (ownerInventory == null)
+        {
+            isReloading = false;
+            yield break;
+        }
+
         // mennyit tudunk a tárba tenni?
         int needed = magazineSize - currentMag;
-        int toLoad = Mathf.Min(needed, reserveAmmo);
-
-        currentMag += toLoad;
-        reserveAmmo -= toLoad;
+        if (needed > 0)
+        {
+            int taken = ownerInventory.ConsumeAmmo(ammoType, needed);
+            currentMag += taken;
+        }
 
         isReloading = false;
         UpdateAmmoUI();
         reloadRoutine = null;
     }
+
+    // --- UI ---
 
     private void UpdateAmmoUI()
     {
@@ -139,29 +157,17 @@ public class GunWeapon : MonoBehaviour
             return;
         }
 
+        int reserve = ownerInventory != null
+            ? ownerInventory.GetReserveAmmo(ammoType)
+            : 0;
+
         ammoText.gameObject.SetActive(true);
-        ammoText.text = $"{currentMag}/{reserveAmmo}";
+        ammoText.text = $"{currentMag}/{reserve}";
     }
 
-    // ha később akarsz “instant full reload” powerupot, ezt is használhatod:
-    public void RefillAllAmmo(int magAmount, int reserveAmount)
+    // kívülről (Inventoryból) hívható frissítés
+    public void RefreshAmmoUI()
     {
-        magazineSize = magAmount;
-        currentMag = magAmount;
-        reserveAmmo = reserveAmount;
         UpdateAmmoUI();
     }
-
-    // a GunWeapon osztályodon belül (add előző kódhoz)
-    public void AddReserve(int amount)
-    {
-        if (amount <= 0) return;
-
-        reserveAmmo += amount;
-        // opcionálisan clamp: ha akarsz maxot (pl. 999)
-        // reserveAmmo = Mathf.Min(reserveAmmo, someMax);
-
-        UpdateAmmoUI();
-    }
-
 }
