@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\shops\\weaponshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\battle\\ammotype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\ammotype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\shops\\weaponshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shops\\weaponshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\peti\\desktop\\susu\\szakdoga git\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\battle\\bandagepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\bandagepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\inventory\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\battle\\gunweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\gunweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +31,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AmmoType.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\AmmoType.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\AmmoType.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\AmmoType.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\AmmoType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:29:05.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "WeaponShop.cs",
               "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Shops\\WeaponShop.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Shops\\WeaponShop.cs",
               "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Shops\\WeaponShop.cs",
               "RelativeToolTip": "Assets\\Scripts\\Shops\\WeaponShop.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAwwI0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAwwHUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-18T15:12:43.034Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BandagePickup.cs",
-              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\BandagePickup.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BandagePickup.cs",
-              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\BandagePickup.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Battle\\BandagePickup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswB0AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "PlayerInventory.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Inventory\\PlayerInventory.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\PlayerInventory.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Inventory\\PlayerInventory.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Inventory\\PlayerInventory.cs",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAswAIBAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T14:57:09.486Z",
+              "WhenOpened": "2025-11-19T11:31:24.579Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerHealth.cs",
-              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAgwEkAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GunWeapon.cs",
+              "DocumentMoniker": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\GunWeapon.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\GunWeapon.cs",
+              "ToolTip": "C:\\Users\\Peti\\Desktop\\Susu\\Szakdoga Git\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\GunWeapon.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\GunWeapon.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAowLgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T14:55:59.566Z"
+              "WhenOpened": "2025-11-19T11:08:11.249Z",
+              "EditorCaption": ""
             }
           ]
         }

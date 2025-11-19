@@ -5,14 +5,21 @@ public class PlayerInventory : MonoBehaviour
     [Header("Setup")]
     public int slotCount = 5;
     public HotbarUI hotbar;
-    public PlayerCombat playerCombat;   // a meglévő scripted
-    public Transform swordHolder;       // Player/ItemHolder
+    public PlayerCombat playerCombat;
+    public Transform swordHolder;
 
     [Header("Controls")]
     public KeyCode dropKey = KeyCode.Q;
 
-    private GameObject[] items;   // 1 tárgy/slot
+    private GameObject[] items;
     private int selected = 0;
+
+    [Header("Stored Ammo (shared, not in inventory)")]
+    public int storedHandgunAmmo = 0;
+    public int storedShotgunAmmo = 0;
+    public int storedRifleAmmo = 0;    // <<< ÚJ
+
+    // ---------- lifecycle ----------
 
     private void Awake()
     {
@@ -40,17 +47,17 @@ public class PlayerInventory : MonoBehaviour
         if (Input.GetKeyDown(dropKey)) DropSelected();
     }
 
+    // ---------- slot váltás ----------
+
     public void Select(int index)
     {
         index = Mathf.Clamp(index, 0, slotCount - 1);
 
-        // előző leszerelése
         UnequipCurrent();
 
         selected = index;
         if (hotbar) hotbar.Select(index);
 
-        // új felszerelése
         EquipFromSlot(selected);
     }
 
@@ -61,28 +68,25 @@ public class PlayerInventory : MonoBehaviour
         Select(i);
     }
 
-    // UI gombokhoz
     public void SelectSlot(int i) => Select(i);
 
-    // Pickup hívja
+    // ---------- pickup / drop ----------
+
     public bool TryAddItem(GameObject worldItem)
     {
         int free = FindFreeSlot();
         if (free < 0) return false;
 
-        // ikon frissítés
         Sprite icon = null;
         var sr = worldItem.GetComponent<SpriteRenderer>();
         if (sr) icon = sr.sprite;
         if (hotbar) hotbar.SetIcon(free, icon);
 
-        // tárgy "elpakolása"
         items[free] = worldItem;
         var col = worldItem.GetComponent<Collider2D>();
         if (col) col.enabled = false;
         worldItem.SetActive(false);
 
-        // ha az aktív slot volt, azonnal kézbe tesszük
         if (free == selected)
             EquipFromSlot(selected);
 
@@ -112,12 +116,11 @@ public class PlayerInventory : MonoBehaviour
         {
             playerCombat.PickUpItem(item, lp, lr, ls);
 
-            // ha fegyver és van hozzá közös ammo, kössük rá az inventoryt
             var gun = item.GetComponent<GunWeapon>() ?? item.GetComponentInChildren<GunWeapon>();
             if (gun != null)
             {
                 gun.SetOwnerInventory(this);
-                gun.OnEquip();         // ammo UI frissítés a shared pool alapján
+                gun.OnEquip();
             }
         }
         else if (swordHolder)
@@ -140,15 +143,12 @@ public class PlayerInventory : MonoBehaviour
         var item = items[selected];
         if (item == null) return;
 
-        // ha épp kézben volt → vedd le
         if (playerCombat && playerCombat.equippedSword == item)
             UnequipCurrent();
 
-        // világba helyezés
         item.transform.SetParent(null);
         item.transform.position = transform.position + Vector3.right * 0.6f;
 
-        // collider vissza (triggerként)
         var col = item.GetComponent<Collider2D>();
         if (col)
         {
@@ -156,18 +156,16 @@ public class PlayerInventory : MonoBehaviour
             col.isTrigger = true;
         }
 
-        // jelzés a pickupnak
         var ipu = item.GetComponent<ItemPickUp>();
         if (ipu) ipu.OnDropped();
 
         item.SetActive(true);
 
-        // inventory & UI tisztítás
         items[selected] = null;
         if (hotbar) hotbar.ClearIcon(selected);
     }
 
-    // ---------- VONAT FUEL ITEM ----------
+    // ---------- Train fuel ----------
 
     public bool TryConsumeSelectedFuelItem(out int fuelGained)
     {
@@ -196,12 +194,8 @@ public class PlayerInventory : MonoBehaviour
         return item.GetComponent<FuelItem>() != null;
     }
 
-    // ---------- KÖZÖS LŐSZERPOOL (HANDGUN) ----------
+    // ---------- Shared ammo pool ----------
 
-    [Header("Stored Ammo (shared, not in inventory)")]
-    public int storedHandgunAmmo = 0;
-
-    /// <summary>Ammo box, loot stb. hívja.</summary>
     public void AddAmmo(AmmoType type, int amount)
     {
         if (amount <= 0) return;
@@ -210,46 +204,68 @@ public class PlayerInventory : MonoBehaviour
         {
             case AmmoType.Handgun:
                 storedHandgunAmmo += amount;
-                RefreshEquippedGunUI();
+                break;
+
+            case AmmoType.Shotgun:
+                storedShotgunAmmo += amount;
+                break;
+
+            case AmmoType.Rifle:
+                storedRifleAmmo += amount;
                 break;
         }
+
+        RefreshEquippedGunUI();
     }
 
-    /// <summary>Közös tartalék lekérdezése (pl. UI-hoz).</summary>
     public int GetReserveAmmo(AmmoType type)
     {
-        switch (type)
+        return type switch
         {
-            case AmmoType.Handgun: return storedHandgunAmmo;
-            default: return 0;
-        }
+            AmmoType.Handgun => storedHandgunAmmo,
+            AmmoType.Shotgun => storedShotgunAmmo,
+            AmmoType.Rifle => storedRifleAmmo,
+            _ => 0
+        };
     }
 
-    /// <summary>Reloadkor innen vesszük ki a tartalékot.</summary>
     public int ConsumeAmmo(AmmoType type, int amount)
     {
         if (amount <= 0) return 0;
 
+        int taken = 0;
+
         switch (type)
         {
             case AmmoType.Handgun:
-                int taken = Mathf.Min(amount, storedHandgunAmmo);
+                taken = Mathf.Min(amount, storedHandgunAmmo);
                 storedHandgunAmmo -= taken;
-                RefreshEquippedGunUI();
-                return taken;
+                break;
 
-            default:
-                return 0;
+            case AmmoType.Shotgun:
+                taken = Mathf.Min(amount, storedShotgunAmmo);
+                storedShotgunAmmo -= taken;
+                break;
+
+            case AmmoType.Rifle:
+                taken = Mathf.Min(amount, storedRifleAmmo);
+                storedRifleAmmo -= taken;
+                break;
         }
+
+        if (taken > 0)
+            RefreshEquippedGunUI();
+
+        return taken;
     }
 
-    /// <summary>Ha változik a közös ammo (loot, reload stb.), frissítjük az épp kézben lévő fegyver UI-ját.</summary>
     private void RefreshEquippedGunUI()
     {
         if (playerCombat == null || playerCombat.equippedSword == null) return;
 
         var gun = playerCombat.equippedSword.GetComponent<GunWeapon>() ??
                   playerCombat.equippedSword.GetComponentInChildren<GunWeapon>();
+
         if (gun != null)
             gun.RefreshAmmoUI();
     }

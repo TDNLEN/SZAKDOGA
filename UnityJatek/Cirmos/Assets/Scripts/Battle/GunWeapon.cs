@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 public class GunWeapon : MonoBehaviour
 {
     [Header("Shooting")]
-    public GameObject bulletPrefab;      // PREFAB!
-    public Transform muzzle;             // ha üres, a fegyver pozícióját használjuk
+    public GameObject bulletPrefab;
+    public Transform muzzle;
     public float bulletSpeed = 10f;
     public float bulletRange = 8f;
     public int damage = 1;
@@ -14,38 +14,45 @@ public class GunWeapon : MonoBehaviour
 
     [Header("Ammo")]
     public AmmoType ammoType = AmmoType.Handgun;
-    public int magazineSize = 8;         // tár méret (első szám)
-    public int currentMag = 8;           // jelenlegi töltény a tárban
-    public float reloadTime = 2f;        // 2 mp reload
-    public TextMeshProUGUI ammoText;     // UI: pl. "8 / 24"
+    public int magazineSize = 8;
+    public int currentMag = 8;
+    public float reloadTime = 2f;
+    public TextMeshProUGUI ammoText;
+
+    [Header("Shotgun settings")]
+    public bool isShotgun = false;
+    public int pelletsPerShot = 5;
+    public float spreadAngle = 15f;
+
+    [Header("Rifle burst settings")]
+    public bool isBurstRifle = false;      // <<< új mód
+    public int burstCount = 3;             // hány golyó egy burstben
+    public float burstInterval = 0.08f;    // idő két golyó között
 
     private float nextShootTime = 0f;
     private bool isEquipped = false;
     private bool isReloading = false;
     private Coroutine reloadRoutine;
 
-    private PlayerInventory ownerInventory;  // <- itt tároljuk, honnan kérünk tartalék lőszert
+    private PlayerInventory ownerInventory;
 
     private void OnEnable()
     {
         UpdateAmmoUI();
     }
 
-    /// <summary>PlayerInventory hívja Equipkor.</summary>
     public void SetOwnerInventory(PlayerInventory inv)
     {
         ownerInventory = inv;
         UpdateAmmoUI();
     }
 
-    // player kézbe veszi
     public void OnEquip()
     {
         isEquipped = true;
         UpdateAmmoUI();
     }
 
-    // player elrakja
     public void OnUnequip()
     {
         isEquipped = false;
@@ -54,7 +61,8 @@ public class GunWeapon : MonoBehaviour
             ammoText.gameObject.SetActive(false);
     }
 
-    /// <summary>A világban lévő célpont felé lő (pl. egér pozíció).</summary>
+    // ---------- lövés ----------
+
     public bool TryShootTowards(Vector2 worldTarget)
     {
         if (bulletPrefab == null)
@@ -69,7 +77,6 @@ public class GunWeapon : MonoBehaviour
         if (Time.time < nextShootTime)
             return false;
 
-        // üres tár → automata reload, ha van tartalék
         if (currentMag <= 0)
         {
             TryStartReload();
@@ -78,35 +85,75 @@ public class GunWeapon : MonoBehaviour
 
         nextShootTime = Time.time + fireCooldown;
 
-        // lövés → -1 a tárból
-        currentMag--;
-        UpdateAmmoUI();
-
-        // golyó spawn
         Vector3 spawnPos = muzzle != null ? muzzle.position : transform.position;
-        Vector2 dir = ((Vector2)worldTarget - (Vector2)spawnPos).normalized;
+        Vector2 baseDir = ((Vector2)worldTarget - (Vector2)spawnPos).normalized;
 
-        GameObject go = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-        Bullet b = go.GetComponent<Bullet>();
-        if (b != null)
+        if (isBurstRifle)
         {
-            b.Init(dir, bulletSpeed, damage, bulletRange);
+            // gépkarabély burst: 3 golyó egymás után, mindegyik 1 ammo
+            StartCoroutine(BurstRoutine(spawnPos, baseDir));
         }
         else
         {
-            Debug.LogWarning("GunWeapon: a bulletPrefab-on nincs Bullet script!");
-        }
+            // single / shotgun: 1 ammo itt fogy
+            currentMag--;
+            UpdateAmmoUI();
 
-        // ha ezzel lőttük ki az utolsó golyót, indulhat az auto reload
-        if (currentMag <= 0)
-        {
-            TryStartReload();
+            if (isShotgun)
+            {
+                float half = spreadAngle * 0.5f;
+                for (int i = 0; i < pelletsPerShot; i++)
+                {
+                    float angleOffset = Random.Range(-half, half);
+                    Vector2 pelletDir = Quaternion.Euler(0, 0, angleOffset) * baseDir;
+                    SpawnBullet(spawnPos, pelletDir);
+                }
+            }
+            else
+            {
+                SpawnBullet(spawnPos, baseDir);
+            }
+
+            if (currentMag <= 0)
+                TryStartReload();
         }
 
         return true;
     }
 
-    // --- RELOAD LOGIKA ---
+    private System.Collections.IEnumerator BurstRoutine(Vector3 spawnPos, Vector2 dir)
+    {
+        int shots = Mathf.Min(burstCount, currentMag);
+
+        for (int i = 0; i < shots; i++)
+        {
+            currentMag--;
+            UpdateAmmoUI();
+
+            SpawnBullet(spawnPos, dir);
+
+            if (currentMag <= 0)
+            {
+                TryStartReload();
+                yield break;
+            }
+
+            if (i < shots - 1)
+                yield return new WaitForSeconds(burstInterval);
+        }
+    }
+
+    private void SpawnBullet(Vector3 spawnPos, Vector2 dir)
+    {
+        GameObject go = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+        var b = go.GetComponent<Bullet>();
+        if (b != null)
+            b.Init(dir, bulletSpeed, damage, bulletRange);
+        else
+            Debug.LogWarning("GunWeapon: a bulletPrefab-on nincs Bullet script!");
+    }
+
+    // ---------- reload ----------
 
     private void TryStartReload()
     {
@@ -114,7 +161,7 @@ public class GunWeapon : MonoBehaviour
         if (ownerInventory == null) return;
 
         int reserve = ownerInventory.GetReserveAmmo(ammoType);
-        if (reserve <= 0) return;          // nincs tartalék → nincs reload
+        if (reserve <= 0) return;
 
         reloadRoutine = StartCoroutine(ReloadCoroutine());
     }
@@ -122,8 +169,6 @@ public class GunWeapon : MonoBehaviour
     private System.Collections.IEnumerator ReloadCoroutine()
     {
         isReloading = true;
-        // ide jöhet reload anim / hang
-
         yield return new WaitForSeconds(reloadTime);
 
         if (ownerInventory == null)
@@ -132,7 +177,6 @@ public class GunWeapon : MonoBehaviour
             yield break;
         }
 
-        // mennyit tudunk a tárba tenni?
         int needed = magazineSize - currentMag;
         if (needed > 0)
         {
@@ -145,7 +189,7 @@ public class GunWeapon : MonoBehaviour
         reloadRoutine = null;
     }
 
-    // --- UI ---
+    // ---------- UI ----------
 
     private void UpdateAmmoUI()
     {
@@ -165,9 +209,5 @@ public class GunWeapon : MonoBehaviour
         ammoText.text = $"{currentMag}/{reserve}";
     }
 
-    // kívülről (Inventoryból) hívható frissítés
-    public void RefreshAmmoUI()
-    {
-        UpdateAmmoUI();
-    }
+    public void RefreshAmmoUI() => UpdateAmmoUI();
 }
