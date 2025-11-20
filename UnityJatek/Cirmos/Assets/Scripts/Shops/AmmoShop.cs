@@ -1,14 +1,6 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
-[System.Serializable]
-public class ShopItem
-{
-    public string id;
-    public GameObject itemPrefab;
-    public int price = 10;
-}
-
-public class WeaponShop : MonoBehaviour
+public class AmmoShop : MonoBehaviour
 {
     [Header("Refs")]
     public Transform player;
@@ -16,15 +8,12 @@ public class WeaponShop : MonoBehaviour
     public PlayerInventory playerInventory;
 
     [Header("Interact")]
-    public float interactRadius = 10f;
+    public float interactRadius = 5f;
     public GameObject gPrompt;
     public GameObject shopUI;
 
-    [Header("Drop")]
-    public Transform dropPoint;
-
-    [Header("Items")]
-    public ShopItem[] items;
+    [Header("Ammo Products")]
+    public AmmoShopItem[] items;
 
     private bool isOpen = false;
 
@@ -68,37 +57,20 @@ public class WeaponShop : MonoBehaviour
         shopUI?.SetActive(false);
     }
 
-    public void BuyItem(int index)
+    public void BuyAmmo(int index)
     {
         if (!isOpen || index < 0 || index >= items.Length) return;
         if (!playerWallet || !playerInventory) return;
 
-        ShopItem si = items[index];
-        if (!si.itemPrefab) return;
+        var si = items[index];
 
         if (!playerWallet.TrySpend(si.price))
         {
-            Debug.Log("Nincs elÃ©g coin.");
+            Debug.Log("Nincs elég coin a vásárláshoz.");
             return;
         }
 
-        Vector3 spawnPos =
-            dropPoint ? dropPoint.position : player.position + Vector3.right * 0.6f;
-
-        GameObject obj = Instantiate(si.itemPrefab, spawnPos, Quaternion.identity);
-        bool added = playerInventory.TryAddItem(obj);
-
-        if (!added)
-        {
-            var col = obj.GetComponent<Collider2D>();
-            if (col)
-            {
-                col.enabled = true;
-                col.isTrigger = true;
-            }
-            obj.GetComponent<ItemPickUp>()?.OnDropped();
-        }
-
-        Debug.Log($"Megvetted: {si.id} ({si.price} coin)");
+        playerInventory.AddAmmo(si.ammoType, si.amount);
+        Debug.Log($"Megvetted: {si.id} +{si.amount} ammo ({si.price} coin)");
     }
 }

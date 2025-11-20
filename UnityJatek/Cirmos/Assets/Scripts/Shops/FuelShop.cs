@@ -1,14 +1,6 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public class ShopItem
-{
-    public string id;
-    public GameObject itemPrefab;
-    public int price = 10;
-}
-
-public class WeaponShop : MonoBehaviour
+public class FuelShop : MonoBehaviour
 {
     [Header("Refs")]
     public Transform player;
@@ -16,7 +8,7 @@ public class WeaponShop : MonoBehaviour
     public PlayerInventory playerInventory;
 
     [Header("Interact")]
-    public float interactRadius = 10f;
+    public float interactRadius = 5f;
     public GameObject gPrompt;
     public GameObject shopUI;
 
@@ -26,7 +18,7 @@ public class WeaponShop : MonoBehaviour
     [Header("Items")]
     public ShopItem[] items;
 
-    private bool isOpen = false;
+    private bool isOpen;
 
     private void Start()
     {
@@ -73,32 +65,34 @@ public class WeaponShop : MonoBehaviour
         if (!isOpen || index < 0 || index >= items.Length) return;
         if (!playerWallet || !playerInventory) return;
 
-        ShopItem si = items[index];
+        var si = items[index];
         if (!si.itemPrefab) return;
 
         if (!playerWallet.TrySpend(si.price))
         {
-            Debug.Log("Nincs elég coin.");
+            Debug.Log("Nincs elég coin a vásárláshoz.");
             return;
         }
 
         Vector3 spawnPos =
             dropPoint ? dropPoint.position : player.position + Vector3.right * 0.6f;
 
-        GameObject obj = Instantiate(si.itemPrefab, spawnPos, Quaternion.identity);
-        bool added = playerInventory.TryAddItem(obj);
+        var newObj = Instantiate(si.itemPrefab, spawnPos, Quaternion.identity);
+
+        bool added = playerInventory.TryAddItem(newObj);
 
         if (!added)
         {
-            var col = obj.GetComponent<Collider2D>();
+            var col = newObj.GetComponent<Collider2D>();
             if (col)
             {
                 col.enabled = true;
                 col.isTrigger = true;
             }
-            obj.GetComponent<ItemPickUp>()?.OnDropped();
+
+            newObj.GetComponent<ItemPickUp>()?.OnDropped();
         }
 
-        Debug.Log($"Megvetted: {si.id} ({si.price} coin)");
+        Debug.Log($"[FuelShop] Megvetted: {si.id} ({si.price} coin)");
     }
 }
