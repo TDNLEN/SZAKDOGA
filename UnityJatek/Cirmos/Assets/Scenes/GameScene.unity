@@ -1748,7 +1748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 619394802}
   - component: {fileID: 619394801}
-  - component: {fileID: 619394803}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -1823,21 +1822,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &619394803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864680d00415e3d43b0d1f375cffd1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLight: {fileID: 0}
-  dayIntensity: 0
-  nightIntensity: 1
 --- !u!1 &622725416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,7 +2701,7 @@ MonoBehaviour:
   clockText: {fileID: 1623009245}
   globalLight: {fileID: 619394801}
   dayLightIntensity: 1
-  nightLightIntensity: 0.2
+  nightLightIntensity: 0.1
 --- !u!4 &731208974
 Transform:
   m_ObjectHideFlags: 0
@@ -2730,7 +2714,8 @@ Transform:
   m_LocalPosition: {x: 6.8257885, y: -1.6624858, z: 0.051693905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2076887925}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &768168115
@@ -7587,7 +7572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 631, y: 307.93}
+  m_AnchoredPosition: {x: 573, y: 307.93}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1623009245
@@ -8398,6 +8383,9 @@ MonoBehaviour:
   - {fileID: 1944587928, guid: b9ac80938a08fbc43a7ad395347ec398, type: 3}
   - {fileID: 768710192, guid: b9ac80938a08fbc43a7ad395347ec398, type: 3}
   tileSize: {x: 1, y: 1}
+  litGroundMaterial: {fileID: 2100000, guid: 32c4db2274e710d4f8c32e2a763b9160, type: 2}
+  sortingLayerName: Default
+  sortingOrder: -100
   chunkSize: 16
   loadRadius: 2
   unloadExtra: 1
@@ -9819,13 +9807,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 2587060038642797857, guid: 9cd588a6ce2addf4ab0669c77d75e248, type: 3}
   skeletonPrefab: {fileID: 7867216082408495683, guid: 134fd37e858c56b428d4ce3a0dcc52b4, type: 3}
-  spawnPoints: []
-  zombiesPerNight: 5
-  skeletonsPerNight: 3
-  useRandomAroundPlayer: 1
   player: {fileID: 443332275}
   minSpawnDistance: 12
   maxSpawnDistance: 22
+  zombieSpawnInterval: 5
+  skeletonSpawnInterval: 10
+  maxAliveNightEnemies: 10
 --- !u!4 &2076887925
 Transform:
   m_ObjectHideFlags: 0
@@ -9834,12 +9821,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076887923}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8257885, y: -1.6624858, z: 0.051693905}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 731208974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130447670
 GameObject:
@@ -10961,6 +10948,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
+  - {fileID: 731208974}
   - {fileID: 5024968221851833532}
   - {fileID: 3011093689025768334}
   - {fileID: 1859432187828029989}
@@ -10984,5 +10972,3 @@ SceneRoots:
   - {fileID: 2439726556951898107}
   - {fileID: 4177116031238731001}
   - {fileID: 7778518624935489182}
-  - {fileID: 731208974}
-  - {fileID: 2076887925}
