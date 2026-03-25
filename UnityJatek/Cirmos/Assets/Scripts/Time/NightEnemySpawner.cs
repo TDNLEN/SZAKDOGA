@@ -7,29 +7,35 @@ public class NightEnemySpawner : MonoBehaviour
     public GameObject zombiePrefab;
     public GameObject skeletonPrefab;
 
-    [Header("Spawn")]
-    public Transform[] spawnPoints;
-    public int zombiesPerNight = 5;
-    public int skeletonsPerNight = 3;
-
-    [Header("Optional random area spawn")]
-    public bool useRandomAroundPlayer = false;
+    [Header("Player")]
     public Transform player;
-    public float minSpawnDistance = 12f;
-    public float maxSpawnDistance = 22f;
+
+    [Header("Spawn Distances")]
+    public float minSpawnDistance = 5f;
+    public float maxSpawnDistance = 15f;
+
+    [Header("Spawn Intervals")]
+    public float zombieSpawnInterval = 5f;
+    public float skeletonSpawnInterval = 10f;
+
+    [Header("Limits")]
+    public int maxAliveNightEnemies = 10;
+
+    private float zombieTimer;
+    private float skeletonTimer;
 
     private readonly List<GameObject> spawnedThisNight = new List<GameObject>();
 
     private void OnEnable()
     {
-        NightEvents.OnNightStarted += HandleNightStarted;
         NightEvents.OnDayStarted += HandleDayStarted;
+        NightEvents.OnNightStarted += HandleNightStarted;
     }
 
     private void OnDisable()
     {
-        NightEvents.OnNightStarted -= HandleNightStarted;
         NightEvents.OnDayStarted -= HandleDayStarted;
+        NightEvents.OnNightStarted -= HandleNightStarted;
     }
 
     private void Start()
@@ -41,14 +47,49 @@ public class NightEnemySpawner : MonoBehaviour
                 player = playerObj.transform;
         }
 
-        if (GameTime.Instance != null && GameTime.Instance.IsNight)
-            HandleNightStarted();
+        ResetTimers();
+
+        if (GameTime.Instance == null || !GameTime.Instance.IsNight)
+        {
+            CleanupDeadEntries();
+            spawnedThisNight.Clear();
+        }
+    }
+
+    private void Update()
+    {
+        if (GameTime.Instance == null) return;
+        if (!GameTime.Instance.IsNight) return;
+        if (player == null) return;
+
+        CleanupDeadEntries();
+
+        if (GetAliveEnemyCount() >= maxAliveNightEnemies)
+            return;
+
+        zombieTimer += Time.deltaTime;
+        skeletonTimer += Time.deltaTime;
+
+        if (zombiePrefab != null &&
+            zombieTimer >= zombieSpawnInterval &&
+            GetAliveEnemyCount() < maxAliveNightEnemies)
+        {
+            zombieTimer = 0f;
+            SpawnEnemy(zombiePrefab);
+        }
+
+        if (skeletonPrefab != null &&
+            skeletonTimer >= skeletonSpawnInterval &&
+            GetAliveEnemyCount() < maxAliveNightEnemies)
+        {
+            skeletonTimer = 0f;
+            SpawnEnemy(skeletonPrefab);
+        }
     }
 
     private void HandleNightStarted()
     {
-        SpawnGroup(zombiePrefab, zombiesPerNight);
-        SpawnGroup(skeletonPrefab, skeletonsPerNight);
+        ResetTimers();
     }
 
     private void HandleDayStarted()
@@ -60,38 +101,52 @@ public class NightEnemySpawner : MonoBehaviour
         }
 
         spawnedThisNight.Clear();
+        ResetTimers();
     }
 
-    private void SpawnGroup(GameObject prefab, int count)
+    private void ResetTimers()
     {
-        if (prefab == null || count <= 0) return;
-
-        for (int i = 0; i < count; i++)
-        {
-            Vector3 spawnPos = GetSpawnPosition();
-            GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
-            spawnedThisNight.Add(enemy);
-        }
+        zombieTimer = 0f;
+        skeletonTimer = 0f;
     }
 
-    private Vector3 GetSpawnPosition()
+    private void SpawnEnemy(GameObject prefab)
     {
-        if (useRandomAroundPlayer && player != null)
-        {
-            Vector2 dir = Random.insideUnitCircle.normalized;
-            float dist = Random.Range(minSpawnDistance, maxSpawnDistance);
-            Vector3 pos = player.position + new Vector3(dir.x, dir.y, 0f) * dist;
-            pos.z = 0f;
-            return pos;
-        }
+        if (prefab == null) return;
+        if (player == null) return;
+        if (GetAliveEnemyCount() >= maxAliveNightEnemies) return;
 
-        if (spawnPoints != null && spawnPoints.Length > 0)
-        {
-            Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            if (point != null)
-                return point.position;
-        }
+        Vector3 spawnPos = GetRandomSpawnPositionAroundPlayer();
+        GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+        spawnedThisNight.Add(enemy);
+    }
 
-        return transform.position;
+    private Vector3 GetRandomSpawnPositionAroundPlayer()
+    {
+        Vector2 dir = Random.insideUnitCircle.normalized;
+
+        if (dir == Vector2.zero)
+            dir = Vector2.right;
+
+        float dist = Random.Range(minSpawnDistance, maxSpawnDistance);
+        Vector3 pos = player.position + new Vector3(dir.x, dir.y, 0f) * dist;
+        pos.z = 0f;
+
+        return pos;
+    }
+
+    private int GetAliveEnemyCount()
+    {
+        CleanupDeadEntries();
+        return spawnedThisNight.Count;
+    }
+
+    private void CleanupDeadEntries()
+    {
+        for (int i = spawnedThisNight.Count - 1; i >= 0; i--)
+        {
+            if (spawnedThisNight[i] == null)
+                spawnedThisNight.RemoveAt(i);
+        }
     }
 }
