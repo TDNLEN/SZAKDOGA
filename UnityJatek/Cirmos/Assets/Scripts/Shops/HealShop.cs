@@ -20,22 +20,31 @@ public class HealShop : MonoBehaviour
 
     private bool isOpen = false;
 
+    private void Awake()
+    {
+        AutoAssignReferences();
+    }
+
     private void Start()
     {
-        shopUI?.SetActive(false);
-        gPrompt?.SetActive(false);
+        if (shopUI != null)
+            shopUI.SetActive(false);
+
+        if (gPrompt != null)
+            gPrompt.SetActive(false);
     }
 
     private void Update()
     {
-        if (!player) return;
+        if (player == null) return;
 
         float dist = Vector2.Distance(player.position, transform.position);
         bool inRange = dist <= interactRadius;
 
         if (!isOpen)
         {
-            gPrompt?.SetActive(inRange);
+            if (gPrompt != null)
+                gPrompt.SetActive(inRange);
 
             if (inRange && Input.GetKeyDown(KeyCode.G))
                 OpenShop();
@@ -47,26 +56,125 @@ public class HealShop : MonoBehaviour
         }
     }
 
+    private void AutoAssignReferences()
+    {
+        if (player == null)
+        {
+            GameObject playerObj = FindSceneObjectByExactName("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
+
+        if (playerWallet == null)
+            playerWallet = Object.FindFirstObjectByType<PlayerWallet>();
+
+        if (playerInventory == null)
+            playerInventory = Object.FindFirstObjectByType<PlayerInventory>();
+
+        if (gPrompt == null)
+            gPrompt = FindChildUnderRootFuzzy("Player", "gpromptheal");
+
+        if (shopUI == null)
+            shopUI = FindChildUnderRootFuzzy("PlayerUI", "healshoppanel");
+
+        if (dropPoint == null)
+        {
+            Transform t = FindDeepChild(transform, "DropPoint");
+            if (t == null) t = FindDeepChild(transform, "Drop");
+            if (t == null) t = FindDeepChild(transform, "SpawnPoint");
+            if (t != null) dropPoint = t;
+        }
+
+        Debug.Log(
+            $"[HealShop] refs -> player:{player != null}, wallet:{playerWallet != null}, inventory:{playerInventory != null}, gPrompt:{gPrompt != null}, shopUI:{shopUI != null}, dropPoint:{dropPoint != null}",
+            this
+        );
+    }
+
+    private GameObject FindSceneObjectByExactName(string objectName)
+    {
+        Transform[] all = Resources.FindObjectsOfTypeAll<Transform>();
+
+        foreach (Transform t in all)
+        {
+            if (t == null) continue;
+            if (t.name != objectName) continue;
+            if (t.hideFlags != HideFlags.None) continue;
+            if (!t.gameObject.scene.IsValid()) continue;
+
+            return t.gameObject;
+        }
+
+        return null;
+    }
+
+    private GameObject FindChildUnderRootFuzzy(string rootName, string wantedNormalizedName)
+    {
+        GameObject rootObj = FindSceneObjectByExactName(rootName);
+        if (rootObj == null) return null;
+
+        Transform[] children = rootObj.GetComponentsInChildren<Transform>(true);
+
+        foreach (Transform t in children)
+        {
+            string n = NormalizeName(t.name);
+
+            if (n.Contains(wantedNormalizedName))
+                return t.gameObject;
+        }
+
+        return null;
+    }
+
+    private string NormalizeName(string s)
+    {
+        s = s.ToLower();
+        s = s.Replace(" ", "");
+        s = s.Replace("_", "");
+        s = s.Replace("-", "");
+        s = s.Replace("(", "");
+        s = s.Replace(")", "");
+        s = s.Replace(".", "");
+        return s;
+    }
+
+    private Transform FindDeepChild(Transform parent, string childName)
+    {
+        foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+        {
+            if (child.name == childName)
+                return child;
+        }
+
+        return null;
+    }
+
     private void OpenShop()
     {
         isOpen = true;
-        shopUI?.SetActive(true);
-        gPrompt?.SetActive(false);
+
+        if (shopUI != null)
+            shopUI.SetActive(true);
+
+        if (gPrompt != null)
+            gPrompt.SetActive(false);
     }
 
     public void CloseShop()
     {
         isOpen = false;
-        shopUI?.SetActive(false);
+
+        if (shopUI != null)
+            shopUI.SetActive(false);
     }
 
     public void BuyItem(int index)
     {
         if (!isOpen || index < 0 || index >= items.Length) return;
-        if (!playerWallet || !playerInventory) return;
+        if (playerWallet == null || playerInventory == null) return;
 
-        var si = items[index];
-        if (!si.itemPrefab) return;
+        ShopItem si = items[index];
+        if (si.itemPrefab == null) return;
 
         if (!playerWallet.TrySpend(si.price))
         {
@@ -74,17 +182,18 @@ public class HealShop : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPos =
-            dropPoint ? dropPoint.position : player.position + Vector3.right * 0.6f;
+        Vector3 spawnPos = dropPoint != null
+            ? dropPoint.position
+            : player.position + Vector3.right * 0.6f;
 
-        var newObj = Instantiate(si.itemPrefab, spawnPos, Quaternion.identity);
+        GameObject newObj = Instantiate(si.itemPrefab, spawnPos, Quaternion.identity);
 
         bool added = playerInventory.TryAddItem(newObj);
 
         if (!added)
         {
-            var col = newObj.GetComponent<Collider2D>();
-            if (col)
+            Collider2D col = newObj.GetComponent<Collider2D>();
+            if (col != null)
             {
                 col.enabled = true;
                 col.isTrigger = true;
