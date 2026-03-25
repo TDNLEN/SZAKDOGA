@@ -27,11 +27,8 @@ public class HealShop : MonoBehaviour
 
     private void Start()
     {
-        if (shopUI != null)
-            shopUI.SetActive(false);
-
-        if (gPrompt != null)
-            gPrompt.SetActive(false);
+        if (shopUI != null) shopUI.SetActive(false);
+        if (gPrompt != null) gPrompt.SetActive(false);
     }
 
     private void Update()
@@ -43,8 +40,7 @@ public class HealShop : MonoBehaviour
 
         if (!isOpen)
         {
-            if (gPrompt != null)
-                gPrompt.SetActive(inRange);
+            if (gPrompt != null) gPrompt.SetActive(inRange);
 
             if (inRange && Input.GetKeyDown(KeyCode.G))
                 OpenShop();
@@ -84,11 +80,6 @@ public class HealShop : MonoBehaviour
             if (t == null) t = FindDeepChild(transform, "SpawnPoint");
             if (t != null) dropPoint = t;
         }
-
-        Debug.Log(
-            $"[HealShop] refs -> player:{player != null}, wallet:{playerWallet != null}, inventory:{playerInventory != null}, gPrompt:{gPrompt != null}, shopUI:{shopUI != null}, dropPoint:{dropPoint != null}",
-            this
-        );
     }
 
     private GameObject FindSceneObjectByExactName(string objectName)
@@ -101,7 +92,6 @@ public class HealShop : MonoBehaviour
             if (t.name != objectName) continue;
             if (t.hideFlags != HideFlags.None) continue;
             if (!t.gameObject.scene.IsValid()) continue;
-
             return t.gameObject;
         }
 
@@ -118,7 +108,6 @@ public class HealShop : MonoBehaviour
         foreach (Transform t in children)
         {
             string n = NormalizeName(t.name);
-
             if (n.Contains(wantedNormalizedName))
                 return t.gameObject;
         }
@@ -154,7 +143,13 @@ public class HealShop : MonoBehaviour
         isOpen = true;
 
         if (shopUI != null)
+        {
+            ItemShopPanel panel = shopUI.GetComponent<ItemShopPanel>();
+            if (panel != null)
+                panel.SetHealShop(this);
+
             shopUI.SetActive(true);
+        }
 
         if (gPrompt != null)
             gPrompt.SetActive(false);
@@ -170,6 +165,8 @@ public class HealShop : MonoBehaviour
 
     public void BuyItem(int index)
     {
+        Debug.Log("[HealShop] BuyItem ezen fut: " + gameObject.name, this);
+
         if (!isOpen || index < 0 || index >= items.Length) return;
         if (playerWallet == null || playerInventory == null) return;
 

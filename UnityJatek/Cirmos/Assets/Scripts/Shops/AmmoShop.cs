@@ -24,11 +24,8 @@ public class AmmoShop : MonoBehaviour
 
     private void Start()
     {
-        if (shopUI != null)
-            shopUI.SetActive(false);
-
-        if (gPrompt != null)
-            gPrompt.SetActive(false);
+        if (shopUI != null) shopUI.SetActive(false);
+        if (gPrompt != null) gPrompt.SetActive(false);
     }
 
     private void Update()
@@ -40,8 +37,7 @@ public class AmmoShop : MonoBehaviour
 
         if (!isOpen)
         {
-            if (gPrompt != null)
-                gPrompt.SetActive(inRange);
+            if (gPrompt != null) gPrompt.SetActive(inRange);
 
             if (inRange && Input.GetKeyDown(KeyCode.G))
                 OpenShop();
@@ -73,11 +69,6 @@ public class AmmoShop : MonoBehaviour
 
         if (shopUI == null)
             shopUI = FindChildUnderRootFuzzy("PlayerUI", "ammoshoppanel");
-
-        Debug.Log(
-            $"[AmmoShop] refs -> player:{player != null}, wallet:{playerWallet != null}, inventory:{playerInventory != null}, gPrompt:{gPrompt != null}, shopUI:{shopUI != null}",
-            this
-        );
     }
 
     private GameObject FindSceneObjectByExactName(string objectName)
@@ -90,7 +81,6 @@ public class AmmoShop : MonoBehaviour
             if (t.name != objectName) continue;
             if (t.hideFlags != HideFlags.None) continue;
             if (!t.gameObject.scene.IsValid()) continue;
-
             return t.gameObject;
         }
 
@@ -107,7 +97,6 @@ public class AmmoShop : MonoBehaviour
         foreach (Transform t in children)
         {
             string n = NormalizeName(t.name);
-
             if (n.Contains(wantedNormalizedName))
                 return t.gameObject;
         }
@@ -132,7 +121,13 @@ public class AmmoShop : MonoBehaviour
         isOpen = true;
 
         if (shopUI != null)
+        {
+            AmmoShopPanelController panel = shopUI.GetComponent<AmmoShopPanelController>();
+            if (panel != null)
+                panel.SetAmmoShop(this);
+
             shopUI.SetActive(true);
+        }
 
         if (gPrompt != null)
             gPrompt.SetActive(false);
@@ -148,6 +143,8 @@ public class AmmoShop : MonoBehaviour
 
     public void BuyAmmo(int index)
     {
+        Debug.Log("[AmmoShop] BuyAmmo ezen fut: " + gameObject.name, this);
+
         if (!isOpen || index < 0 || index >= items.Length) return;
         if (playerWallet == null || playerInventory == null) return;
 

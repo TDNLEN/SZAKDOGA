@@ -27,11 +27,8 @@ public class FuelShop : MonoBehaviour
 
     private void Start()
     {
-        if (shopUI != null)
-            shopUI.SetActive(false);
-
-        if (gPrompt != null)
-            gPrompt.SetActive(false);
+        if (shopUI != null) shopUI.SetActive(false);
+        if (gPrompt != null) gPrompt.SetActive(false);
     }
 
     private void Update()
@@ -43,8 +40,7 @@ public class FuelShop : MonoBehaviour
 
         if (!isOpen)
         {
-            if (gPrompt != null)
-                gPrompt.SetActive(inRange);
+            if (gPrompt != null) gPrompt.SetActive(inRange);
 
             if (inRange && Input.GetKeyDown(KeyCode.G))
                 OpenShop();
@@ -60,7 +56,7 @@ public class FuelShop : MonoBehaviour
     {
         if (player == null)
         {
-            GameObject playerObj = FindSceneObjectByName("Player");
+            GameObject playerObj = FindSceneObjectByExactName("Player");
             if (playerObj != null)
                 player = playerObj.transform;
         }
@@ -72,10 +68,10 @@ public class FuelShop : MonoBehaviour
             playerInventory = Object.FindFirstObjectByType<PlayerInventory>();
 
         if (gPrompt == null)
-            gPrompt = FindSceneObjectByName("G_Prompt_fuel");
+            gPrompt = FindChildUnderRootFuzzy("Player", "gpromptfuel");
 
         if (shopUI == null)
-            shopUI = FindSceneObjectByName("FuelShopPanel");
+            shopUI = FindChildUnderRootFuzzy("PlayerUI", "fuelshoppanel");
 
         if (dropPoint == null)
         {
@@ -84,31 +80,51 @@ public class FuelShop : MonoBehaviour
             if (t == null) t = FindDeepChild(transform, "SpawnPoint");
             if (t != null) dropPoint = t;
         }
-
-        Debug.Log(
-            $"[FuelShop] refs -> player:{player != null}, wallet:{playerWallet != null}, inventory:{playerInventory != null}, gPrompt:{gPrompt != null}, shopUI:{shopUI != null}, dropPoint:{dropPoint != null}",
-            this
-        );
     }
 
-    private GameObject FindSceneObjectByName(string objectName)
+    private GameObject FindSceneObjectByExactName(string objectName)
     {
         Transform[] all = Resources.FindObjectsOfTypeAll<Transform>();
 
         foreach (Transform t in all)
         {
             if (t == null) continue;
-
             if (t.name != objectName) continue;
-
-            // Csak valódi scene object kell, ne prefab asset
             if (t.hideFlags != HideFlags.None) continue;
             if (!t.gameObject.scene.IsValid()) continue;
-
             return t.gameObject;
         }
 
         return null;
+    }
+
+    private GameObject FindChildUnderRootFuzzy(string rootName, string wantedNormalizedName)
+    {
+        GameObject rootObj = FindSceneObjectByExactName(rootName);
+        if (rootObj == null) return null;
+
+        Transform[] children = rootObj.GetComponentsInChildren<Transform>(true);
+
+        foreach (Transform t in children)
+        {
+            string n = NormalizeName(t.name);
+            if (n.Contains(wantedNormalizedName))
+                return t.gameObject;
+        }
+
+        return null;
+    }
+
+    private string NormalizeName(string s)
+    {
+        s = s.ToLower();
+        s = s.Replace(" ", "");
+        s = s.Replace("_", "");
+        s = s.Replace("-", "");
+        s = s.Replace("(", "");
+        s = s.Replace(")", "");
+        s = s.Replace(".", "");
+        return s;
     }
 
     private Transform FindDeepChild(Transform parent, string childName)
@@ -127,7 +143,13 @@ public class FuelShop : MonoBehaviour
         isOpen = true;
 
         if (shopUI != null)
+        {
+            ItemShopPanel panel = shopUI.GetComponent<ItemShopPanel>();
+            if (panel != null)
+                panel.SetFuelShop(this);
+
             shopUI.SetActive(true);
+        }
 
         if (gPrompt != null)
             gPrompt.SetActive(false);
@@ -143,6 +165,8 @@ public class FuelShop : MonoBehaviour
 
     public void BuyItem(int index)
     {
+        Debug.Log("[FuelShop] BuyItem ezen fut: " + gameObject.name, this);
+
         if (!isOpen || index < 0 || index >= items.Length) return;
         if (playerWallet == null || playerInventory == null) return;
 
