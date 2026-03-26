@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\wagonstorageinteractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\train\\wagonstorageinteractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\wagonstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\train\\wagonstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\house\\houseentrance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\houseentrance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\train\\trainwagonfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\train\\trainwagonfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\house\\housespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\housespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\gameoverui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameoverui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\playerdeathhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerdeathhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\house\\housespawnconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\housespawnconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,76 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WagonStorageInteractor.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAkwFwAAAABAAAAAAAAAA==",
+              "Title": "DungeonManager.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\DungeonManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\House\\DungeonManager.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\DungeonManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\House\\DungeonManager.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAswIYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T12:02:47.996Z",
+              "WhenOpened": "2026-03-26T20:13:37.345Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "WagonStorage.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorage.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\WagonStorage.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorage.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\WagonStorage.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAYwCMAAAAgAAAAAAAAAA==",
+              "Title": "HouseEntrance.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseEntrance.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\House\\HouseEntrance.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseEntrance.cs",
+              "RelativeToolTip": "Assets\\Scripts\\House\\HouseEntrance.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvw8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T12:01:42.749Z",
+              "WhenOpened": "2026-03-26T20:11:16.12Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TrainWagonFollower.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Title": "HouseSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\House\\HouseSpawner.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\House\\HouseSpawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T11:45:27.963Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlayerHealth.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerHealth.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T11:25:06.864Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PlayerDeathHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\PlayerDeathHandler.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerDeathHandler.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\PlayerDeathHandler.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerDeathHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T11:23:38.911Z"
+              "WhenOpened": "2026-03-26T20:09:44.056Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GameOverUi.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\GameOverUi.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GameOverUi.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\GameOverUi.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GameOverUi.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwGAAAAABAAAAAAAAAA==",
+              "Title": "HouseSpawnConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseSpawnConfig.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\House\\HouseSpawnConfig.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\HouseSpawnConfig.cs",
+              "RelativeToolTip": "Assets\\Scripts\\House\\HouseSpawnConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T11:23:10.787Z"
+              "WhenOpened": "2026-03-26T20:08:07.517Z"
             }
           ]
         }
