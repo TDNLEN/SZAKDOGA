@@ -31,7 +31,62 @@ public class PlayerInventory : MonoBehaviour
         if (hotbar != null && hotbar.slotBGs != null && hotbar.slotBGs.Length > 0)
             hotbar.Select(0);
     }
+    public GameObject GetSelectedItem()
+    {
+        if (selected < 0 || selected >= items.Length)
+            return null;
 
+        return items[selected];
+    }
+
+    public GameObject RemoveSelectedItemFromInventory()
+    {
+        if (selected < 0 || selected >= items.Length)
+            return null;
+
+        GameObject item = items[selected];
+        if (item == null)
+            return null;
+
+        if (playerCombat && playerCombat.equippedSword == item)
+            UnequipCurrent();
+
+        items[selected] = null;
+
+        if (hotbar)
+            hotbar.ClearIcon(selected);
+
+        return item;
+    }
+
+    public bool TryAddStoredItem(GameObject itemObject)
+    {
+        if (itemObject == null) return false;
+
+        int free = FindFreeSlot();
+        if (free < 0) return false;
+
+        Sprite icon = null;
+        SpriteRenderer sr = itemObject.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            icon = sr.sprite;
+
+        items[free] = itemObject;
+
+        Collider2D col = itemObject.GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        itemObject.SetActive(false);
+
+        if (hotbar)
+            hotbar.SetIcon(free, icon);
+
+        if (free == selected)
+            EquipFromSlot(selected);
+
+        return true;
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) Select(0);
