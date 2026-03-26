@@ -10,13 +10,16 @@ public class PlayerHealth : MonoBehaviour
     private bool isDead = false;
 
     [Header("UI References")]
-    public Image healthBarFill; // ide húzd be a zöld UI Image-et (HealthBarFill)
+    public Image healthBarFill;
 
     [Header("Sprite Flash")]
-    public SpriteRenderer sprite;  // ide húzd be a Player SpriteRenderer-t
+    public SpriteRenderer sprite;
     public Color hitColor = Color.red;
     public float hitFlashTime = 0.1f;
     private Color originalColor;
+
+    [Header("Death")]
+    public PlayerDeathHandler deathHandler;
 
     private void Awake()
     {
@@ -24,8 +27,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (sprite == null)
             sprite = GetComponent<SpriteRenderer>();
+
         if (sprite != null)
             originalColor = sprite.color;
+
+        if (deathHandler == null)
+            deathHandler = GetComponent<PlayerDeathHandler>();
 
         UpdateHealthBar();
     }
@@ -50,11 +57,9 @@ public class PlayerHealth : MonoBehaviour
 
         float t = Mathf.Clamp01((float)currentHealth / maxHealth);
 
-        // skálázás X irányban (0..1)
-        var rt = healthBarFill.rectTransform;
+        RectTransform rt = healthBarFill.rectTransform;
         rt.localScale = new Vector3(t, 1f, 1f);
 
-        // balról rövidüljön: a pivot marad középen, ezért eltoljuk balra
         float offset = (1f - t) * (rt.rect.width / 2f);
         rt.localPosition = new Vector3(-offset, 0f, 0f);
     }
@@ -62,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator HitFlash()
     {
         if (sprite == null) yield break;
+
         sprite.color = hitColor;
         yield return new WaitForSeconds(hitFlashTime);
         sprite.color = originalColor;
@@ -69,14 +75,17 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+
         isDead = true;
         Debug.Log("Player meghalt!");
-        // TODO: respawn / game over
+
+        if (deathHandler != null)
+            deathHandler.Die();
     }
 
     public void Heal(int amount)
     {
-     
         TryHeal(amount);
     }
 
