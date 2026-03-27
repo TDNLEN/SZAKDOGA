@@ -88,13 +88,15 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        HouseUniqueId idComp = house.GetComponentInParent<HouseUniqueId>();
+        HouseUniqueId idComp = house.GetHouseUniqueId();
         if (idComp == null || string.IsNullOrEmpty(idComp.uniqueId))
         {
             Debug.LogError("DungeonManager: A háznak nincs HouseUniqueId-ja!");
             return;
         }
 
+        Debug.Log("Belépett ház ID: " + idComp.uniqueId);
+        currentHouseId = idComp.uniqueId;
         currentHouseId = idComp.uniqueId;
         returnPosition = player.position;
 

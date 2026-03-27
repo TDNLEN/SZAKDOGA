@@ -18,7 +18,7 @@ public class HouseEntrance : MonoBehaviour
     {
         if (player == null)
         {
-            GameObject playerObj = GameObject.Find("Player");
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
                 player = playerObj.transform;
         }
@@ -49,5 +49,10 @@ public class HouseEntrance : MonoBehaviour
             if (mgr != null)
                 mgr.EnterDungeonFromHouse(this, dungeonConfig);
         }
+    }
+
+    public HouseUniqueId GetHouseUniqueId()
+    {
+        return GetComponentInParent<HouseUniqueId>(true);
     }
 }

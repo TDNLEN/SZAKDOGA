@@ -184,6 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3507552310754543804}
+  - component: {fileID: 7363242189365834444}
   m_Layer: 0
   m_Name: House_A 3
   m_TagString: Untagged
@@ -208,6 +209,19 @@ Transform:
   - {fileID: 7768088759941504838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7363242189365834444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511257285888321514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3648a0fa492ec0444b08e886f5606495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
 --- !u!1 &5756336823023103462
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +442,6 @@ GameObject:
   - component: {fileID: 7774464556479164103}
   - component: {fileID: 6954632191602235938}
   - component: {fileID: 4885314794493225284}
-  - component: {fileID: 8308713653686947018}
   m_Layer: 9
   m_Name: house_down
   m_TagString: Untagged
@@ -613,16 +626,3 @@ MonoBehaviour:
   dungeonConfig: {fileID: 11400000, guid: f7de322fdeac4c9409cffaef0b6a9a62, type: 2}
   interactRadius: 3
   interactKey: 101
---- !u!114 &8308713653686947018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196301992055704320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3648a0fa492ec0444b08e886f5606495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: house_manual_01

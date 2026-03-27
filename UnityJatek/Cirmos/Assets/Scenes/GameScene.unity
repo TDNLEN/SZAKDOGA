@@ -5748,6 +5748,8 @@ MonoBehaviour:
   player: {fileID: 443332275}
   housePrefabs:
   - {fileID: 5511257285888321514, guid: 15f3138490752244789364ee3c60a32c, type: 3}
+  - {fileID: 5511257285888321514, guid: cc2177c6bf0bf094d86415ea09283144, type: 3}
+  - {fileID: 5511257285888321514, guid: 3ed65171446690849bb97c077e8b4864, type: 3}
   chunkWidth: 50
   loadRadius: 3
   unloadExtra: 1
