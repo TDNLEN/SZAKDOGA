@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd8c56faa7a9124b91db9b1039491e5, type: 3}
+  m_Name: DungeonConfig_house_a
+  m_EditorClassIdentifier: 
+  possibleItemPrefabs:
+  - {fileID: 5658712339990394328, guid: 53cf3ecec982e3e4baff81f9a353d733, type: 3}
+  - {fileID: 8723348040093362228, guid: 516da189714932c49b40f6f4f4cb6bfd, type: 3}
+  - {fileID: 524706100309851857, guid: 69ffc9f263a2445439b582fcc7332a26, type: 3}
+  - {fileID: 524706100309851857, guid: 69ffc9f263a2445439b582fcc7332a26, type: 3}
+  - {fileID: 4273190471236740784, guid: e972898bacc10e94994079fa01dd79f3, type: 3}
+  - {fileID: 3786173020315004415, guid: 98ccf9f13700a974b805f2e4122eca1c, type: 3}
+  - {fileID: 2760011369758118558, guid: 41afa6d9d7cc45d4fb4edc91c74cbc41, type: 3}
+  - {fileID: 3082242232003901621, guid: e43ce1a63819221499ca5a608efa3dd3, type: 3}
+  - {fileID: 1831871800645595870, guid: 05b77769a1fb1114f8bb981563307084, type: 3}
+  itemCount: 2
+  possibleEnemyPrefabs:
+  - {fileID: 2587060038642797857, guid: 9cd588a6ce2addf4ab0669c77d75e248, type: 3}
+  - {fileID: 7867216082408495683, guid: 134fd37e858c56b428d4ce3a0dcc52b4, type: 3}
+  enemyCount: 2

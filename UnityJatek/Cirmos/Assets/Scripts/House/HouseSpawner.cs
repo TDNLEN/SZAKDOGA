@@ -23,17 +23,23 @@ public class HouseSpawner : MonoBehaviour
     public LayerMask obstacleMask;
     public float extraSpacing = 1f;
 
-    private readonly List<GameObject> spawnedHouses = new List<GameObject>();
+    private readonly List<Bounds> reservedHouseAreas = new List<Bounds>();
 
     private void Start()
     {
+        Debug.Log("HouseSpawner Start lefutott");
+
+        if (housePrefabs == null || housePrefabs.Length == 0)
+        {
+            Debug.LogWarning("HouseSpawner: nincs beállítva house prefab!");
+            return;
+        }
+
         SpawnHouses();
     }
 
     private void SpawnHouses()
     {
-        if (housePrefabs == null || housePrefabs.Length == 0) return;
-
         int spawned = 0;
         int globalAttempts = 0;
         int maxGlobalAttempts = houseCount * maxAttemptsPerHouse;
@@ -52,9 +58,21 @@ public class HouseSpawner : MonoBehaviour
             if (!found) continue;
 
             GameObject house = Instantiate(prefab, pos, Quaternion.identity);
-            spawnedHouses.Add(house);
+
+            HouseUniqueId id = house.GetComponent<HouseUniqueId>();
+            if (id == null)
+                id = house.AddComponent<HouseUniqueId>();
+
+            id.uniqueId = System.Guid.NewGuid().ToString();
+
+            Bounds b = new Bounds(pos, new Vector3(size.x + extraSpacing, size.y + extraSpacing, 1f));
+            reservedHouseAreas.Add(b);
+
             spawned++;
+            Debug.Log("Ház spawnolva ide: " + pos + " | id: " + id.uniqueId);
         }
+
+        Debug.Log("Összes spawnolt ház: " + spawned);
     }
 
     private bool TryFindPositionForHouse(GameObject prefab, out Vector3 spawnPos, out Vector2 size)
@@ -71,15 +89,37 @@ public class HouseSpawner : MonoBehaviour
             float x = Random.Range(minX, maxX);
 
             int side = Random.value < 0.5f ? -1 : 1;
-            float yOffset = Random.Range(minDistanceFromRail, maxDistanceFromRail);
+
+            float minYOffset = minDistanceFromRail + size.y * 0.5f;
+            float maxYOffset = maxDistanceFromRail + size.y * 0.5f;
+            float yOffset = Random.Range(minYOffset, maxYOffset);
+
             float y = railY + side * yOffset;
 
             Vector2 center = new Vector2(x, y);
             Vector2 checkSize = size + Vector2.one * extraSpacing;
 
-            Collider2D hit = Physics2D.OverlapBox(center, checkSize, 0f, obstacleMask);
-            if (hit != null)
+            Bounds candidate = new Bounds(center, new Vector3(checkSize.x, checkSize.y, 1f));
+            bool overlapsSpawnedHouse = false;
+
+            for (int j = 0; j < reservedHouseAreas.Count; j++)
+            {
+                if (reservedHouseAreas[j].Intersects(candidate))
+                {
+                    overlapsSpawnedHouse = true;
+                    break;
+                }
+            }
+
+            if (overlapsSpawnedHouse)
                 continue;
+
+            if (obstacleMask.value != 0)
+            {
+                Collider2D hit = Physics2D.OverlapBox(center, checkSize, 0f, obstacleMask);
+                if (hit != null)
+                    continue;
+            }
 
             spawnPos = new Vector3(x, y, 0f);
             return true;
@@ -91,8 +131,6 @@ public class HouseSpawner : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Vector3 a = new Vector3(minX, railY, 0f);
-        Vector3 b = new Vector3(maxX, railY, 0f);
-        Gizmos.DrawLine(a, b);
+        Gizmos.DrawLine(new Vector3(minX, railY, 0f), new Vector3(maxX, railY, 0f));
     }
 }

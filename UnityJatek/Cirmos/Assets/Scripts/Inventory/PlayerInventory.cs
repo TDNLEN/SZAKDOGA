@@ -2,6 +2,7 @@
 
 public class PlayerInventory : MonoBehaviour
 {
+
     [Header("Setup")]
     public int slotCount = 5;
     public HotbarUI hotbar;
@@ -71,6 +72,10 @@ public class PlayerInventory : MonoBehaviour
         if (sr != null)
             icon = sr.sprite;
 
+        var dungeonMarker = itemObject.GetComponent<DungeonSpawnedObject>();
+        if (dungeonMarker != null)
+            dungeonMarker.collectedByPlayer = true;
+
         items[free] = itemObject;
 
         Collider2D col = itemObject.GetComponent<Collider2D>();
@@ -129,18 +134,30 @@ public class PlayerInventory : MonoBehaviour
 
     public bool TryAddItem(GameObject worldItem)
     {
+        if (!worldItem) return false;
+
         int free = FindFreeSlot();
         if (free < 0) return false;
 
         Sprite icon = null;
-        var sr = worldItem.GetComponent<SpriteRenderer>();
-        if (sr) icon = sr.sprite;
-        if (hotbar) hotbar.SetIcon(free, icon);
+        SpriteRenderer sr = worldItem.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            icon = sr.sprite;
+
+        var dungeonMarker = worldItem.GetComponent<DungeonSpawnedObject>();
+        if (dungeonMarker != null)
+            dungeonMarker.collectedByPlayer = true;
 
         items[free] = worldItem;
-        var col = worldItem.GetComponent<Collider2D>();
-        if (col) col.enabled = false;
+
+        Collider2D col = worldItem.GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
         worldItem.SetActive(false);
+
+        if (hotbar)
+            hotbar.SetIcon(free, icon);
 
         if (free == selected)
             EquipFromSlot(selected);

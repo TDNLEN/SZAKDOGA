@@ -5,6 +5,23 @@ public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager Instance;
 
+    [System.Serializable]
+    public class DungeonObjectState
+    {
+        public DungeonSpawnedObject.SpawnKind kind;
+        public string prefabName;
+        public int spawnPointIndex;
+        public bool removed;
+    }
+
+    [System.Serializable]
+    public class HouseDungeonState
+    {
+        public string houseId;
+        public bool initialized = false;
+        public List<DungeonObjectState> objects = new List<DungeonObjectState>();
+    }
+
     [Header("Refs")]
     public Transform player;
     public GameObject dungeonRoot;
@@ -15,16 +32,16 @@ public class DungeonManager : MonoBehaviour
     public Transform[] itemSpawnPoints;
     public Transform[] enemySpawnPoints;
 
-    [Header("Prefabs")]
+    [Header("Fallback Prefabs")]
     public GameObject[] itemPrefabs;
     public GameObject[] enemyPrefabs;
 
-    [Header("Counts")]
-    public int itemsPerRun = 2;
-    public int enemiesPerRun = 3;
-
     private Vector3 returnPosition;
-    private readonly List<GameObject> spawnedDungeonObjects = new List<GameObject>();
+
+    private readonly List<DungeonSpawnedObject> activeDungeonObjects = new List<DungeonSpawnedObject>();
+    private readonly Dictionary<string, HouseDungeonState> savedStates = new Dictionary<string, HouseDungeonState>();
+
+    private string currentHouseId = null;
 
     private void Awake()
     {
@@ -45,26 +62,67 @@ public class DungeonManager : MonoBehaviour
             dungeonRoot.SetActive(false);
     }
 
-    public void EnterDungeonFromHouse(HouseEntrance house)
+    public void EnterDungeonFromHouse(HouseEntrance house, DungeonConfig config)
     {
-        if (player == null || dungeonRoot == null || dungeonPlayerSpawn == null) return;
+        if (player == null)
+        {
+            Debug.LogError("DungeonManager: Player nincs beállítva.");
+            return;
+        }
 
+        if (dungeonRoot == null)
+        {
+            Debug.LogError("DungeonManager: DungeonRoot nincs beállítva.");
+            return;
+        }
+
+        if (dungeonPlayerSpawn == null)
+        {
+            Debug.LogError("DungeonManager: DungeonPlayerSpawn nincs beállítva.");
+            return;
+        }
+
+        if (config == null)
+        {
+            Debug.LogError("DungeonManager: A ház dungeonConfig mezõje nincs beállítva.");
+            return;
+        }
+
+        HouseUniqueId idComp = house.GetComponentInParent<HouseUniqueId>();
+        if (idComp == null || string.IsNullOrEmpty(idComp.uniqueId))
+        {
+            Debug.LogError("DungeonManager: A háznak nincs HouseUniqueId-ja!");
+            return;
+        }
+
+        currentHouseId = idComp.uniqueId;
         returnPosition = player.position;
 
-        ClearDungeon();
+        ClearActiveDungeonSceneOnly();
 
         dungeonRoot.SetActive(true);
         player.position = dungeonPlayerSpawn.position;
 
-        SpawnDungeonItems();
-        SpawnDungeonEnemies();
+        if (!savedStates.ContainsKey(currentHouseId))
+        {
+            HouseDungeonState newState = CreateInitialState(config, currentHouseId);
+            savedStates.Add(currentHouseId, newState);
+        }
+
+        LoadHouseState(savedStates[currentHouseId]);
     }
 
     public void ExitDungeon()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogError("Player nincs beállítva a DungeonManagerben!");
+            return;
+        }
 
-        ClearDungeon();
+        SaveCurrentDungeonState();
+
+        ClearActiveDungeonSceneOnly();
 
         if (dungeonRoot != null)
             dungeonRoot.SetActive(false);
@@ -72,64 +130,182 @@ public class DungeonManager : MonoBehaviour
         player.position = returnPosition;
     }
 
-    private void SpawnDungeonItems()
+    private HouseDungeonState CreateInitialState(DungeonConfig config, string houseId)
     {
-        if (itemPrefabs == null || itemPrefabs.Length == 0) return;
-        if (itemSpawnPoints == null || itemSpawnPoints.Length == 0) return;
+        HouseDungeonState state = new HouseDungeonState();
+        state.houseId = houseId;
+        state.initialized = true;
 
-        List<int> freeIndexes = new List<int>();
+        List<int> itemIndexes = new List<int>();
         for (int i = 0; i < itemSpawnPoints.Length; i++)
-            freeIndexes.Add(i);
+            itemIndexes.Add(i);
 
-        int spawnCount = Mathf.Min(itemsPerRun, itemSpawnPoints.Length);
-
-        for (int i = 0; i < spawnCount; i++)
+        int itemCount = Mathf.Min(config.itemCount, itemSpawnPoints.Length);
+        for (int i = 0; i < itemCount; i++)
         {
-            int pick = Random.Range(0, freeIndexes.Count);
-            int spawnIndex = freeIndexes[pick];
-            freeIndexes.RemoveAt(pick);
+            int pick = Random.Range(0, itemIndexes.Count);
+            int spawnIndex = itemIndexes[pick];
+            itemIndexes.RemoveAt(pick);
 
-            GameObject prefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+            GameObject prefab = config.possibleItemPrefabs[Random.Range(0, config.possibleItemPrefabs.Length)];
             if (prefab == null) continue;
 
-            GameObject obj = Instantiate(prefab, itemSpawnPoints[spawnIndex].position, Quaternion.identity);
-            spawnedDungeonObjects.Add(obj);
+            state.objects.Add(new DungeonObjectState
+            {
+                kind = DungeonSpawnedObject.SpawnKind.Item,
+                prefabName = prefab.name,
+                spawnPointIndex = spawnIndex,
+                removed = false
+            });
         }
-    }
 
-    private void SpawnDungeonEnemies()
-    {
-        if (enemyPrefabs == null || enemyPrefabs.Length == 0) return;
-        if (enemySpawnPoints == null || enemySpawnPoints.Length == 0) return;
-
-        List<int> freeIndexes = new List<int>();
+        List<int> enemyIndexes = new List<int>();
         for (int i = 0; i < enemySpawnPoints.Length; i++)
-            freeIndexes.Add(i);
+            enemyIndexes.Add(i);
 
-        int spawnCount = Mathf.Min(enemiesPerRun, enemySpawnPoints.Length);
-
-        for (int i = 0; i < spawnCount; i++)
+        int enemyCount = Mathf.Min(config.enemyCount, enemySpawnPoints.Length);
+        for (int i = 0; i < enemyCount; i++)
         {
-            int pick = Random.Range(0, freeIndexes.Count);
-            int spawnIndex = freeIndexes[pick];
-            freeIndexes.RemoveAt(pick);
+            int pick = Random.Range(0, enemyIndexes.Count);
+            int spawnIndex = enemyIndexes[pick];
+            enemyIndexes.RemoveAt(pick);
 
-            GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            GameObject prefab = config.possibleEnemyPrefabs[Random.Range(0, config.possibleEnemyPrefabs.Length)];
             if (prefab == null) continue;
 
-            GameObject obj = Instantiate(prefab, enemySpawnPoints[spawnIndex].position, Quaternion.identity);
-            spawnedDungeonObjects.Add(obj);
+            state.objects.Add(new DungeonObjectState
+            {
+                kind = DungeonSpawnedObject.SpawnKind.Enemy,
+                prefabName = prefab.name,
+                spawnPointIndex = spawnIndex,
+                removed = false
+            });
+        }
+
+        return state;
+    }
+
+    private void LoadHouseState(HouseDungeonState state)
+    {
+        foreach (DungeonObjectState objState in state.objects)
+        {
+            if (objState.removed) continue;
+
+            GameObject prefab = FindPrefabByName(objState.kind, objState.prefabName);
+            if (prefab == null)
+            {
+                Debug.LogWarning("Nem található prefab: " + objState.prefabName);
+                continue;
+            }
+
+            Transform spawnPoint = null;
+
+            if (objState.kind == DungeonSpawnedObject.SpawnKind.Item)
+            {
+                if (objState.spawnPointIndex < 0 || objState.spawnPointIndex >= itemSpawnPoints.Length) continue;
+                spawnPoint = itemSpawnPoints[objState.spawnPointIndex];
+            }
+            else
+            {
+                if (objState.spawnPointIndex < 0 || objState.spawnPointIndex >= enemySpawnPoints.Length) continue;
+                spawnPoint = enemySpawnPoints[objState.spawnPointIndex];
+            }
+
+            if (spawnPoint == null) continue;
+
+            Vector3 spawnPos = spawnPoint.position;
+            if (objState.kind == DungeonSpawnedObject.SpawnKind.Item)
+                spawnPos += Vector3.up * 0.1f;
+
+            GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            DungeonSpawnedObject marker = obj.GetComponent<DungeonSpawnedObject>();
+            if (marker == null)
+                marker = obj.AddComponent<DungeonSpawnedObject>();
+
+            marker.kind = objState.kind;
+            marker.houseId = state.houseId;
+            marker.prefabName = objState.prefabName;
+            marker.spawnPointIndex = objState.spawnPointIndex;
+            marker.collectedByPlayer = false;
+            marker.permanentlyRemoved = false;
+
+            activeDungeonObjects.Add(marker);
         }
     }
 
-    private void ClearDungeon()
+    private void SaveCurrentDungeonState()
     {
-        for (int i = spawnedDungeonObjects.Count - 1; i >= 0; i--)
+        if (string.IsNullOrEmpty(currentHouseId)) return;
+        if (!savedStates.ContainsKey(currentHouseId)) return;
+
+        HouseDungeonState state = savedStates[currentHouseId];
+
+        for (int i = 0; i < state.objects.Count; i++)
         {
-            if (spawnedDungeonObjects[i] != null)
-                Destroy(spawnedDungeonObjects[i]);
+            DungeonObjectState saved = state.objects[i];
+
+            bool foundAlive = false;
+
+            for (int j = 0; j < activeDungeonObjects.Count; j++)
+            {
+                DungeonSpawnedObject marker = activeDungeonObjects[j];
+                if (marker == null) continue;
+
+                if (marker.kind == saved.kind &&
+                    marker.prefabName == saved.prefabName &&
+                    marker.spawnPointIndex == saved.spawnPointIndex &&
+                    marker.houseId == state.houseId)
+                {
+                    foundAlive = true;
+
+                    if (marker.kind == DungeonSpawnedObject.SpawnKind.Item && marker.collectedByPlayer)
+                        saved.removed = true;
+
+                    break;
+                }
+            }
+
+            // Ha enemy nincs már meg, akkor halottnak tekintjük
+            if (!foundAlive && saved.kind == DungeonSpawnedObject.SpawnKind.Enemy)
+                saved.removed = true;
+        }
+    }
+
+    private void ClearActiveDungeonSceneOnly()
+    {
+        for (int i = activeDungeonObjects.Count - 1; i >= 0; i--)
+        {
+            DungeonSpawnedObject marker = activeDungeonObjects[i];
+
+            if (marker == null)
+            {
+                activeDungeonObjects.RemoveAt(i);
+                continue;
+            }
+
+            // ha itemet már felszedte a player, az inventoryban él tovább, ne töröljük
+            if (marker.kind == DungeonSpawnedObject.SpawnKind.Item && marker.collectedByPlayer)
+            {
+                activeDungeonObjects.RemoveAt(i);
+                continue;
+            }
+
+            Destroy(marker.gameObject);
+            activeDungeonObjects.RemoveAt(i);
+        }
+    }
+
+    private GameObject FindPrefabByName(DungeonSpawnedObject.SpawnKind kind, string prefabName)
+    {
+        GameObject[] source = kind == DungeonSpawnedObject.SpawnKind.Item ? itemPrefabs : enemyPrefabs;
+
+        for (int i = 0; i < source.Length; i++)
+        {
+            if (source[i] != null && source[i].name == prefabName)
+                return source[i];
         }
 
-        spawnedDungeonObjects.Clear();
+        return null;
     }
 }

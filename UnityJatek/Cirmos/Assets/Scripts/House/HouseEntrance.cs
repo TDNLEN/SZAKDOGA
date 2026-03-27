@@ -7,11 +7,12 @@ public class HouseEntrance : MonoBehaviour
     public Transform interactPoint;
     public GameObject ePrompt;
 
+    [Header("Dungeon")]
+    public DungeonConfig dungeonConfig;
+
     [Header("Settings")]
     public float interactRadius = 3f;
     public KeyCode interactKey = KeyCode.E;
-
-    private bool playerInsideRange = false;
 
     private void Awake()
     {
@@ -37,16 +38,16 @@ public class HouseEntrance : MonoBehaviour
         if (player == null) return;
 
         float dist = Vector2.Distance(player.position, interactPoint.position);
-        playerInsideRange = dist <= interactRadius;
+        bool inRange = dist <= interactRadius;
 
         if (ePrompt != null)
-            ePrompt.SetActive(playerInsideRange);
+            ePrompt.SetActive(inRange);
 
-        if (playerInsideRange && Input.GetKeyDown(interactKey))
+        if (inRange && Input.GetKeyDown(interactKey))
         {
             DungeonManager mgr = FindFirstObjectByType<DungeonManager>();
             if (mgr != null)
-                mgr.EnterDungeonFromHouse(this);
+                mgr.EnterDungeonFromHouse(this, dungeonConfig);
         }
     }
 }
