@@ -98,18 +98,26 @@ public class DungeonManager : MonoBehaviour
         currentHouseId = idComp.uniqueId;
         returnPosition = player.position;
 
-        ClearActiveDungeonSceneOnly();
-
-        dungeonRoot.SetActive(true);
-        player.position = dungeonPlayerSpawn.position;
-
-        if (!savedStates.ContainsKey(currentHouseId))
+        void TeleportAction()
         {
-            HouseDungeonState newState = CreateInitialState(config, currentHouseId);
-            savedStates.Add(currentHouseId, newState);
+            ClearActiveDungeonSceneOnly();
+
+            dungeonRoot.SetActive(true);
+            player.position = dungeonPlayerSpawn.position;
+
+            if (!savedStates.ContainsKey(currentHouseId))
+            {
+                HouseDungeonState newState = CreateInitialState(config, currentHouseId);
+                savedStates.Add(currentHouseId, newState);
+            }
+
+            LoadHouseState(savedStates[currentHouseId]);
         }
 
-        LoadHouseState(savedStates[currentHouseId]);
+        if (ScreenFader.Instance != null)
+            ScreenFader.Instance.FadeOutIn(TeleportAction, 0.6f, 0.15f, 0.6f);
+        else
+            TeleportAction();
     }
 
     public void ExitDungeon()
@@ -120,14 +128,22 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        SaveCurrentDungeonState();
+        void TeleportBackAction()
+        {
+            SaveCurrentDungeonState();
 
-        ClearActiveDungeonSceneOnly();
+            ClearActiveDungeonSceneOnly();
 
-        if (dungeonRoot != null)
-            dungeonRoot.SetActive(false);
+            if (dungeonRoot != null)
+                dungeonRoot.SetActive(false);
 
-        player.position = returnPosition;
+            player.position = returnPosition;
+        }
+
+        if (ScreenFader.Instance != null)
+            ScreenFader.Instance.FadeOutIn(TeleportBackAction, 0.6f, 0.15f, 0.6f);
+        else
+            TeleportBackAction();
     }
 
     private HouseDungeonState CreateInitialState(DungeonConfig config, string houseId)

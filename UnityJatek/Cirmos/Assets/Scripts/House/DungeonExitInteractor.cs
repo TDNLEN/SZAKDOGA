@@ -15,7 +15,7 @@ public class DungeonExitInteractor : MonoBehaviour
     {
         if (player == null)
         {
-            GameObject playerObj = GameObject.Find("Player");
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
                 player = playerObj.transform;
         }
@@ -33,6 +33,7 @@ public class DungeonExitInteractor : MonoBehaviour
     private void Update()
     {
         if (player == null) return;
+        if (interactPoint == null) return;
 
         float dist = Vector2.Distance(player.position, interactPoint.position);
         bool inRange = dist <= interactRadius;
