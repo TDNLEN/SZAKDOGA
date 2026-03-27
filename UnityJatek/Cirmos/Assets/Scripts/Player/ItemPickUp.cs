@@ -10,51 +10,67 @@ public class ItemPickUp : MonoBehaviour
     public Vector3 equipLocalScale = Vector3.one;
 
     [Header("Pickup control")]
-    public float rePickupDelay = 0.25f;   // dobás után ennyi ideig ne lehessen rögtön felvenni
+    public float rePickupDelay = 0.25f;
 
     private bool picked = false;
     private float nextPickupTime = 0f;
 
     private void Reset()
     {
-        var c = GetComponent<Collider2D>();
-        if (c) c.isTrigger = true;
+        Collider2D c = GetComponent<Collider2D>();
+        if (c != null) c.isTrigger = true;
     }
 
     private void OnValidate()
     {
-        var c = GetComponent<Collider2D>();
-        if (c) c.isTrigger = true;
+        Collider2D c = GetComponent<Collider2D>();
+        if (c != null) c.isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        if (Time.time < nextPickupTime) return;  // várjunk kicsit dobás után
-        if (picked) return;                      // már inventoryban van
+        if (Time.time < nextPickupTime) return;
+        if (picked) return;
 
-        var inv = other.GetComponent<PlayerInventory>();
-        if (inv == null) inv = other.GetComponentInParent<PlayerInventory>();
+        PlayerHealth health = other.GetComponent<PlayerHealth>();
+        if (health == null)
+            health = other.GetComponentInParent<PlayerHealth>();
+
+        // Heal item speciális logika:
+        // ha NEM full HP-n van, akkor azonnal gyógyít és NEM kerül inventoryba
+        HealPickupItem healPickup = GetComponent<HealPickupItem>();
+        if (healPickup != null && health != null && !health.IsFullHealth)
+        {
+            bool healed = health.TryHeal(healPickup.healAmount);
+            if (healed)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        PlayerInventory inv = other.GetComponent<PlayerInventory>();
+        if (inv == null)
+            inv = other.GetComponentInParent<PlayerInventory>();
         if (inv == null) return;
 
         if (inv.TryAddItem(gameObject))
         {
-            picked = true; // inventoryba tettük → jelöljük felvettnek
+            picked = true;
         }
     }
 
-    /// Meghívja a PlayerInventory, amikor kidobjuk.
     public void OnDropped()
     {
         picked = false;
         nextPickupTime = Time.time + rePickupDelay;
 
-        var col = GetComponent<Collider2D>();
-        if (col)
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
         {
             col.enabled = true;
             col.isTrigger = true;
         }
     }
-
 }
