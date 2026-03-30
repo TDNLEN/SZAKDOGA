@@ -17,7 +17,10 @@ public class PlayerHealth : MonoBehaviour
     public Color hitColor = Color.red;
     public float hitFlashTime = 0.1f;
     private Color originalColor;
-
+    
+    [Header("Protection")]
+    public bool invulnerable = false;
+    public bool IsInvulnerable => invulnerable;
     [Header("Death")]
     public PlayerDeathHandler deathHandler;
 
@@ -40,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         if (isDead) return;
+        if (invulnerable) return;
 
         currentHealth -= dmg;
         if (currentHealth < 0) currentHealth = 0;

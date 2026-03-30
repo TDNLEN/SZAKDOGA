@@ -1573,6 +1573,7 @@ MonoBehaviour:
   sprite: {fileID: 443332299}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   hitFlashTime: 0.3
+  invulnerable: 0
   deathHandler: {fileID: 0}
 --- !u!212 &443332299 stripped
 SpriteRenderer:
