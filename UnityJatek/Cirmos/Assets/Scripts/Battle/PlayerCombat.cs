@@ -101,6 +101,16 @@ public class PlayerCombat : MonoBehaviour
 
         if (weaponAnimator != null)
             weaponAnimator.SetTrigger("Attack");
+
+        if (equippedSword != null)
+        {
+            MeleeWeaponAudio meleeAudio = equippedSword.GetComponent<MeleeWeaponAudio>();
+            if (meleeAudio == null)
+                meleeAudio = equippedSword.GetComponentInChildren<MeleeWeaponAudio>();
+
+            if (meleeAudio != null)
+                meleeAudio.PlayAttackSound();
+        }
     }
 
     // csak PlayerCombat használja

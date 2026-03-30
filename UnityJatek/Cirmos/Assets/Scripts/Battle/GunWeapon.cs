@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -25,9 +26,14 @@ public class GunWeapon : MonoBehaviour
     public float spreadAngle = 15f;
 
     [Header("Rifle burst settings")]
-    public bool isBurstRifle = false;      // <<< új mód
-    public int burstCount = 3;             // hány golyó egy burstben
-    public float burstInterval = 0.08f;    // idő két golyó között
+    public bool isBurstRifle = false;
+    public int burstCount = 3;
+    public float burstInterval = 0.08f;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip shotSound;
+    [Range(0f, 1f)] public float shotVolume = 1f;
 
     private float nextShootTime = 0f;
     private bool isEquipped = false;
@@ -35,6 +41,12 @@ public class GunWeapon : MonoBehaviour
     private Coroutine reloadRoutine;
 
     private PlayerInventory ownerInventory;
+
+    private void Awake()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
@@ -60,8 +72,6 @@ public class GunWeapon : MonoBehaviour
         if (ammoText != null)
             ammoText.gameObject.SetActive(false);
     }
-
-    // ---------- lövés ----------
 
     public bool TryShootTowards(Vector2 worldTarget)
     {
@@ -90,14 +100,14 @@ public class GunWeapon : MonoBehaviour
 
         if (isBurstRifle)
         {
-            // gépkarabély burst: 3 golyó egymás után, mindegyik 1 ammo
             StartCoroutine(BurstRoutine(spawnPos, baseDir));
         }
         else
         {
-            // single / shotgun: 1 ammo itt fogy
             currentMag--;
             UpdateAmmoUI();
+
+            PlayShotSound();
 
             if (isShotgun)
             {
@@ -121,7 +131,7 @@ public class GunWeapon : MonoBehaviour
         return true;
     }
 
-    private System.Collections.IEnumerator BurstRoutine(Vector3 spawnPos, Vector2 dir)
+    private IEnumerator BurstRoutine(Vector3 spawnPos, Vector2 dir)
     {
         int shots = Mathf.Min(burstCount, currentMag);
 
@@ -130,6 +140,7 @@ public class GunWeapon : MonoBehaviour
             currentMag--;
             UpdateAmmoUI();
 
+            PlayShotSound();
             SpawnBullet(spawnPos, dir);
 
             if (currentMag <= 0)
@@ -146,14 +157,20 @@ public class GunWeapon : MonoBehaviour
     private void SpawnBullet(Vector3 spawnPos, Vector2 dir)
     {
         GameObject go = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-        var b = go.GetComponent<Bullet>();
+        Bullet b = go.GetComponent<Bullet>();
         if (b != null)
             b.Init(dir, bulletSpeed, damage, bulletRange);
         else
             Debug.LogWarning("GunWeapon: a bulletPrefab-on nincs Bullet script!");
     }
 
-    // ---------- reload ----------
+    private void PlayShotSound()
+    {
+        if (audioSource == null || shotSound == null)
+            return;
+
+        audioSource.PlayOneShot(shotSound, shotVolume);
+    }
 
     private void TryStartReload()
     {
@@ -166,7 +183,7 @@ public class GunWeapon : MonoBehaviour
         reloadRoutine = StartCoroutine(ReloadCoroutine());
     }
 
-    private System.Collections.IEnumerator ReloadCoroutine()
+    private IEnumerator ReloadCoroutine()
     {
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
@@ -188,8 +205,6 @@ public class GunWeapon : MonoBehaviour
         UpdateAmmoUI();
         reloadRoutine = null;
     }
-
-    // ---------- UI ----------
 
     private void UpdateAmmoUI()
     {
