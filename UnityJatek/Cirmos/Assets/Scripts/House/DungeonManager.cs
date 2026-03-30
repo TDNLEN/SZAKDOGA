@@ -36,6 +36,11 @@ public class DungeonManager : MonoBehaviour
     public GameObject[] itemPrefabs;
     public GameObject[] enemyPrefabs;
 
+    [Header("Door Audio")]
+    public AudioSource audioSource;
+    public AudioClip doorSound;
+    [Range(0f, 1f)] public float doorVolume = 1f;
+
     private Vector3 returnPosition;
 
     private readonly List<DungeonSpawnedObject> activeDungeonObjects = new List<DungeonSpawnedObject>();
@@ -47,6 +52,9 @@ public class DungeonManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -97,7 +105,6 @@ public class DungeonManager : MonoBehaviour
 
         Debug.Log("Belépett ház ID: " + idComp.uniqueId);
         currentHouseId = idComp.uniqueId;
-        currentHouseId = idComp.uniqueId;
         returnPosition = player.position;
 
         void TeleportAction()
@@ -115,6 +122,8 @@ public class DungeonManager : MonoBehaviour
 
             LoadHouseState(savedStates[currentHouseId]);
         }
+
+        PlayDoorSound();
 
         if (ScreenFader.Instance != null)
             ScreenFader.Instance.FadeOutIn(TeleportAction, 0.6f, 0.15f, 0.6f);
@@ -142,10 +151,20 @@ public class DungeonManager : MonoBehaviour
             player.position = returnPosition;
         }
 
+        PlayDoorSound();
+
         if (ScreenFader.Instance != null)
             ScreenFader.Instance.FadeOutIn(TeleportBackAction, 0.6f, 0.15f, 0.6f);
         else
             TeleportBackAction();
+    }
+
+    private void PlayDoorSound()
+    {
+        if (audioSource == null || doorSound == null)
+            return;
+
+        audioSource.PlayOneShot(doorSound, doorVolume);
     }
 
     private HouseDungeonState CreateInitialState(DungeonConfig config, string houseId)
@@ -262,7 +281,6 @@ public class DungeonManager : MonoBehaviour
         for (int i = 0; i < state.objects.Count; i++)
         {
             DungeonObjectState saved = state.objects[i];
-
             bool foundAlive = false;
 
             for (int j = 0; j < activeDungeonObjects.Count; j++)
@@ -284,7 +302,6 @@ public class DungeonManager : MonoBehaviour
                 }
             }
 
-            // Ha enemy nincs már meg, akkor halottnak tekintjük
             if (!foundAlive && saved.kind == DungeonSpawnedObject.SpawnKind.Enemy)
                 saved.removed = true;
         }
@@ -302,7 +319,6 @@ public class DungeonManager : MonoBehaviour
                 continue;
             }
 
-            // ha itemet már felszedte a player, az inventoryban él tovább, ne töröljük
             if (marker.kind == DungeonSpawnedObject.SpawnKind.Item && marker.collectedByPlayer)
             {
                 activeDungeonObjects.RemoveAt(i);

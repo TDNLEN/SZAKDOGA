@@ -12,6 +12,10 @@ public class ItemPickUp : MonoBehaviour
     [Header("Pickup control")]
     public float rePickupDelay = 0.25f;
 
+    [Header("Pickup Audio")]
+    public AudioClip pickupSound;
+    [Range(0f, 1f)] public float pickupVolume = 2f;
+
     private bool picked = false;
     private float nextPickupTime = 0f;
 
@@ -58,7 +62,15 @@ public class ItemPickUp : MonoBehaviour
         if (inv.TryAddItem(gameObject))
         {
             picked = true;
+            PlayPickupSound();
         }
+    }
+
+    private void PlayPickupSound()
+    {
+        if (pickupSound == null) return;
+
+        AudioSource.PlayClipAtPoint(pickupSound, transform.position, pickupVolume);
     }
 
     public void OnDropped()

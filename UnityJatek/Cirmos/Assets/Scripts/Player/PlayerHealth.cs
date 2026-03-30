@@ -17,12 +17,20 @@ public class PlayerHealth : MonoBehaviour
     public Color hitColor = Color.red;
     public float hitFlashTime = 0.1f;
     private Color originalColor;
-    
+
     [Header("Protection")]
     public bool invulnerable = false;
     public bool IsInvulnerable => invulnerable;
+
     [Header("Death")]
     public PlayerDeathHandler deathHandler;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip healSound;
+    [Range(0f, 1f)] public float healVolume = 1f;
+    public AudioClip damageSound;
+    [Range(0f, 1f)] public float damageVolume = 1f;
 
     private void Awake()
     {
@@ -37,6 +45,9 @@ public class PlayerHealth : MonoBehaviour
         if (deathHandler == null)
             deathHandler = GetComponent<PlayerDeathHandler>();
 
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         UpdateHealthBar();
     }
 
@@ -44,11 +55,13 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
         if (invulnerable) return;
+        if (dmg <= 0) return;
 
         currentHealth -= dmg;
         if (currentHealth < 0) currentHealth = 0;
 
         UpdateHealthBar();
+        PlayDamageSound();
         StartCoroutine(HitFlash());
 
         if (currentHealth <= 0)
@@ -99,9 +112,34 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return false;
         if (currentHealth >= maxHealth) return false;
+        if (amount <= 0) return false;
 
+        int oldHealth = currentHealth;
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        UpdateHealthBar();
-        return true;
+
+        if (currentHealth > oldHealth)
+        {
+            UpdateHealthBar();
+            PlayHealSound();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void PlayHealSound()
+    {
+        if (audioSource == null || healSound == null)
+            return;
+
+        audioSource.PlayOneShot(healSound, healVolume);
+    }
+
+    private void PlayDamageSound()
+    {
+        if (audioSource == null || damageSound == null)
+            return;
+
+        audioSource.PlayOneShot(damageSound, damageVolume);
     }
 }

@@ -142,6 +142,8 @@ MonoBehaviour:
   equipLocalRotation: {x: 0, y: 0, z: -20}
   equipLocalScale: {x: 1, y: 1, z: 1}
   rePickupDelay: 0.25
+  pickupSound: {fileID: 8300000, guid: edeb865ded0645948853ad064d3751d2, type: 3}
+  pickupVolume: 1
 --- !u!114 &6474244208270598860
 MonoBehaviour:
   m_ObjectHideFlags: 0
