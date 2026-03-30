@@ -121,6 +121,9 @@ public class DungeonManager : MonoBehaviour
             }
 
             LoadHouseState(savedStates[currentHouseId]);
+
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.SetDungeonState(true);
         }
 
         PlayDoorSound();
@@ -149,6 +152,9 @@ public class DungeonManager : MonoBehaviour
                 dungeonRoot.SetActive(false);
 
             player.position = returnPosition;
+
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.SetDungeonState(false);
         }
 
         PlayDoorSound();
