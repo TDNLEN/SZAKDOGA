@@ -22,6 +22,7 @@ MonoBehaviour:
   - {fileID: 2760011369758118558, guid: 41afa6d9d7cc45d4fb4edc91c74cbc41, type: 3}
   - {fileID: 3082242232003901621, guid: e43ce1a63819221499ca5a608efa3dd3, type: 3}
   - {fileID: 1831871800645595870, guid: 05b77769a1fb1114f8bb981563307084, type: 3}
+  - {fileID: 3768471367509501334, guid: 481fe0a9edb75784f8745af8200c4615, type: 3}
   itemCount: 2
   possibleEnemyPrefabs:
   - {fileID: 2587060038642797857, guid: 9cd588a6ce2addf4ab0669c77d75e248, type: 3}

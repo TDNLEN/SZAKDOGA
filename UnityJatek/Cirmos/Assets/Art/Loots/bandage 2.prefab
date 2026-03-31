@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2801356109605599123}
   - component: {fileID: 5338046616826540297}
   - component: {fileID: 250630876625260903}
-  - component: {fileID: 4353927783571132285}
   - component: {fileID: 1551469645659300818}
+  - component: {fileID: -7020575732568407512}
   m_Layer: 7
   m_Name: bandage 2
   m_TagString: Untagged
@@ -136,19 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.83, y: 6.8}
   m_EdgeRadius: 0
---- !u!114 &4353927783571132285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273190471236740784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38bc2ba56ce9da04bba54fa2cc6d64a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healAmount: 1
 --- !u!114 &1551469645659300818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +154,16 @@ MonoBehaviour:
   rePickupDelay: 0.25
   pickupSound: {fileID: 8300000, guid: edeb865ded0645948853ad064d3751d2, type: 3}
   pickupVolume: 1
+--- !u!114 &-7020575732568407512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273190471236740784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2ab7a34ef9343479c72679815ff796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 3

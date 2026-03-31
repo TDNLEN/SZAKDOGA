@@ -13,7 +13,6 @@ public class BandagePickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ha ItemPickUp van ezen az objecten, akkor a heal logikát már az kezeli.
         if (GetComponent<ItemPickUp>() != null)
             return;
 

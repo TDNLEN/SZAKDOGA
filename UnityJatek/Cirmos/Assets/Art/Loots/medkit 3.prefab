@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7774997675284888077}
   - component: {fileID: 8225943011241176723}
   - component: {fileID: 3361286800251891906}
-  - component: {fileID: 359304128117469321}
   - component: {fileID: 7595079566551721582}
+  - component: {fileID: -2319339804856891148}
   m_Layer: 7
   m_Name: medkit 3
   m_TagString: Untagged
@@ -136,19 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 8.09, y: 7.75}
   m_EdgeRadius: 0
---- !u!114 &359304128117469321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3768471367509501334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38bc2ba56ce9da04bba54fa2cc6d64a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healAmount: 30
 --- !u!114 &7595079566551721582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +154,16 @@ MonoBehaviour:
   rePickupDelay: 0.25
   pickupSound: {fileID: 8300000, guid: edeb865ded0645948853ad064d3751d2, type: 3}
   pickupVolume: 1
+--- !u!114 &-2319339804856891148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3768471367509501334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2ab7a34ef9343479c72679815ff796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 5
