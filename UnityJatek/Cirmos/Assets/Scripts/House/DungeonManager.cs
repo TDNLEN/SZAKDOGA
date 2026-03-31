@@ -164,7 +164,29 @@ public class DungeonManager : MonoBehaviour
         else
             TeleportBackAction();
     }
+    public void MarkDungeonObjectRemoved(DungeonSpawnedObject marker)
+    {
+        if (marker == null) return;
+        if (string.IsNullOrEmpty(marker.houseId)) return;
 
+        if (!savedStates.TryGetValue(marker.houseId, out HouseDungeonState state))
+            return;
+
+        for (int i = 0; i < state.objects.Count; i++)
+        {
+            DungeonObjectState saved = state.objects[i];
+
+            if (saved.kind == marker.kind &&
+                saved.prefabName == marker.prefabName &&
+                saved.spawnPointIndex == marker.spawnPointIndex)
+            {
+                saved.removed = true;
+                break;
+            }
+        }
+
+        activeDungeonObjects.Remove(marker);
+    }
     private void PlayDoorSound()
     {
         if (audioSource == null || doorSound == null)
@@ -308,7 +330,7 @@ public class DungeonManager : MonoBehaviour
                 }
             }
 
-            if (!foundAlive && saved.kind == DungeonSpawnedObject.SpawnKind.Enemy)
+            if (!foundAlive)
                 saved.removed = true;
         }
     }

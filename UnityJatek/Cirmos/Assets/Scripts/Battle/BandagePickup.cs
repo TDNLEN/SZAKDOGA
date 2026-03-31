@@ -3,24 +3,27 @@
 [RequireComponent(typeof(Collider2D))]
 public class BandagePickup : MonoBehaviour
 {
-    public int healAmount = 10;   // ennyit gyógyít egy bandage
+    public int healAmount = 10;
 
     private void Reset()
     {
-        var c = GetComponent<Collider2D>();
-        if (c) c.isTrigger = true;
+        Collider2D c = GetComponent<Collider2D>();
+        if (c != null) c.isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Ha ItemPickUp van ezen az objecten, akkor a heal logikát már az kezeli.
+        if (GetComponent<ItemPickUp>() != null)
+            return;
+
         if (!other.CompareTag("Player")) return;
 
-        var health = other.GetComponent<PlayerHealth>();
+        PlayerHealth health = other.GetComponent<PlayerHealth>();
         if (health == null)
             health = other.GetComponentInParent<PlayerHealth>();
         if (health == null) return;
 
-        // TryHeal magában eldönti, hogy lehet-e gyógyítani
         if (health.TryHeal(healAmount))
         {
             Destroy(gameObject);

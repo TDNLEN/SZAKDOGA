@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bc2ba56ce9da04bba54fa2cc6d64a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 10
+  healAmount: 1
 --- !u!114 &1551469645659300818
 MonoBehaviour:
   m_ObjectHideFlags: 0

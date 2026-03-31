@@ -18,9 +18,8 @@ public class PlayerInventory : MonoBehaviour
     [Header("Stored Ammo (shared, not in inventory)")]
     public int storedHandgunAmmo = 0;
     public int storedShotgunAmmo = 0;
-    public int storedRifleAmmo = 0;    // <<< ÚJ
+    public int storedRifleAmmo = 0;    
 
-    // ---------- lifecycle ----------
 
     private void Awake()
     {
@@ -74,7 +73,12 @@ public class PlayerInventory : MonoBehaviour
 
         var dungeonMarker = itemObject.GetComponent<DungeonSpawnedObject>();
         if (dungeonMarker != null)
+        {
             dungeonMarker.collectedByPlayer = true;
+
+            if (DungeonManager.Instance != null)
+                DungeonManager.Instance.MarkDungeonObjectRemoved(dungeonMarker);
+        }
 
         items[free] = itemObject;
 
@@ -130,7 +134,6 @@ public class PlayerInventory : MonoBehaviour
 
     public void SelectSlot(int i) => Select(i);
 
-    // ---------- pickup / drop ----------
 
     public bool TryAddItem(GameObject worldItem)
     {
@@ -146,7 +149,12 @@ public class PlayerInventory : MonoBehaviour
 
         var dungeonMarker = worldItem.GetComponent<DungeonSpawnedObject>();
         if (dungeonMarker != null)
+        {
             dungeonMarker.collectedByPlayer = true;
+
+            if (DungeonManager.Instance != null)
+                DungeonManager.Instance.MarkDungeonObjectRemoved(dungeonMarker);
+        }
 
         items[free] = worldItem;
 
