@@ -53,6 +53,11 @@ public class GunWeapon : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    private void OnDisable()
+    {
+        CancelReload();
+    }
+
     public void SetOwnerInventory(PlayerInventory inv)
     {
         ownerInventory = inv;
@@ -63,11 +68,16 @@ public class GunWeapon : MonoBehaviour
     {
         isEquipped = true;
         UpdateAmmoUI();
+
+        // Ha üres a tár, visszavételkor próbáljon újratölteni
+        if (currentMag <= 0)
+            TryStartReload();
     }
 
     public void OnUnequip()
     {
         isEquipped = false;
+        CancelReload();
 
         if (ammoText != null)
             ammoText.gameObject.SetActive(false);
@@ -176,6 +186,7 @@ public class GunWeapon : MonoBehaviour
     {
         if (isReloading) return;
         if (ownerInventory == null) return;
+        if (currentMag >= magazineSize) return;
 
         int reserve = ownerInventory.GetReserveAmmo(ammoType);
         if (reserve <= 0) return;
@@ -186,11 +197,13 @@ public class GunWeapon : MonoBehaviour
     private IEnumerator ReloadCoroutine()
     {
         isReloading = true;
+
         yield return new WaitForSeconds(reloadTime);
 
         if (ownerInventory == null)
         {
             isReloading = false;
+            reloadRoutine = null;
             yield break;
         }
 
@@ -202,8 +215,19 @@ public class GunWeapon : MonoBehaviour
         }
 
         isReloading = false;
-        UpdateAmmoUI();
         reloadRoutine = null;
+        UpdateAmmoUI();
+    }
+
+    private void CancelReload()
+    {
+        if (reloadRoutine != null)
+        {
+            StopCoroutine(reloadRoutine);
+            reloadRoutine = null;
+        }
+
+        isReloading = false;
     }
 
     private void UpdateAmmoUI()
@@ -224,5 +248,8 @@ public class GunWeapon : MonoBehaviour
         ammoText.text = $"{currentMag}/{reserve}";
     }
 
-    public void RefreshAmmoUI() => UpdateAmmoUI();
+    public void RefreshAmmoUI()
+    {
+        UpdateAmmoUI();
+    }
 }

@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\train\\traincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\musicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\musicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\time\\gametime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\time\\gametime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\traincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\train\\traincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\enemys\\enemyproximitysound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\enemys\\enemyproximitysound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemys\\enemyproximitysound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\house\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C8A46326-CF88-1009-84BA-8B894994A8C6}|Assembly-CSharp.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\scripts\\player\\playerinputreader1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,11 +58,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameTime.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Time\\GameTime.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Time\\GameTime.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Time\\GameTime.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Time\\GameTime.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-30T19:26:38.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MusicManager.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\MusicManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MusicManager.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\MusicManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MusicManager.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAuwHwAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-30T19:16:52.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "EnemyProximitySound.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Enemys\\EnemyProximitySound.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemys\\EnemyProximitySound.cs",
@@ -62,8 +96,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Enemys\\EnemyProximitySound.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAkwEcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T14:03:51.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-30T14:03:51.763Z"
             },
             {
               "$type": "Document",
@@ -73,14 +106,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\House\\DungeonManager.cs",
               "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\House\\DungeonManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\House\\DungeonManager.cs",
-              "ViewState": "AgIAAD8BAAAAAAAAAAAkwFkBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAAAJ0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-30T13:57:25.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "PlayerInputReader1.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerInputReader1.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerInputReader1.cs",
@@ -92,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TrainController.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainController.cs",
@@ -105,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CoinPickup.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\CoinPickup.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CoinPickup.cs",
@@ -117,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ItemPickUp.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\ItemPickUp.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\ItemPickUp.cs",
@@ -129,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PlayerHealth.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Player\\PlayerHealth.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHealth.cs",
@@ -141,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PlayerCombat.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\PlayerCombat.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\PlayerCombat.cs",
@@ -153,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "MeleeWeaponAudio.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\MeleeWeaponAudio.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\MeleeWeaponAudio.cs",
@@ -165,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "GunWeapon.cs",
               "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Battle\\GunWeapon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\GunWeapon.cs",
