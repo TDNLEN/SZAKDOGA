@@ -56,7 +56,6 @@ public class ScreenFader : MonoBehaviour
 
         fadeImage.gameObject.SetActive(true);
 
-        // Fade out to black
         yield return StartCoroutine(FadeAlpha(0f, 1f, fadeOutTime));
 
         middleAction?.Invoke();
@@ -64,7 +63,6 @@ public class ScreenFader : MonoBehaviour
         if (blackHoldTime > 0f)
             yield return new WaitForSeconds(blackHoldTime);
 
-        // Fade back in
         yield return StartCoroutine(FadeAlpha(1f, 0f, fadeInTime));
 
         Color c = fadeImage.color;

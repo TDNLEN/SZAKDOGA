@@ -111,7 +111,6 @@ public class PlayerInventory : MonoBehaviour
         if (Input.GetKeyDown(dropKey)) DropSelected();
     }
 
-    // ---------- slot váltás ----------
 
     public void Select(int index)
     {
@@ -245,7 +244,6 @@ public class PlayerInventory : MonoBehaviour
         if (hotbar) hotbar.ClearIcon(selected);
     }
 
-    // ---------- Train fuel ----------
 
     public bool TryConsumeSelectedFuelItem(out int fuelGained)
     {
@@ -274,7 +272,6 @@ public class PlayerInventory : MonoBehaviour
         return item.GetComponent<FuelItem>() != null;
     }
 
-    // ---------- Shared ammo pool ----------
 
     public void AddAmmo(AmmoType type, int amount)
     {

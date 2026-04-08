@@ -47,7 +47,6 @@ public class EnemyProximitySound : MonoBehaviour
             return;
         }
 
-        // Belépéskor azonnal lejátssza
         if (!wasInRangeLastFrame)
         {
             PlaySound();

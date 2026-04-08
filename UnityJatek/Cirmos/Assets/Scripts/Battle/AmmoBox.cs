@@ -1,12 +1,11 @@
-// Assets/Scripts/Ammo/AmmoBox.cs
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class AmmoBox : MonoBehaviour
 {
     public AmmoType ammoType = AmmoType.Handgun;
-    public int amount = 8;           // mennyi töltényt ad
-    public bool autoPickup = true;   // true = ha player rámegy, felveszi
+    public int amount = 8;          
+    public bool autoPickup = true;   
 
     private void Reset()
     {
@@ -28,6 +27,5 @@ public class AmmoBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // opcionális: ha szeretnéd, hogy a játékos billentyûvel vegye fel,
-    // implementálhatsz egy kis prompt és Interact() metódust.
+    
 }

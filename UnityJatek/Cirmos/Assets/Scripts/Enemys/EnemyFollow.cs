@@ -45,7 +45,6 @@ public class EnemyFollow : MonoBehaviour
             velocity = Vector2.zero;
         }
 
-        // irányfordítás
         if (velocity.x != 0f)
         {
             Vector3 s = transform.localScale;

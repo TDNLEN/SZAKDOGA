@@ -6,12 +6,10 @@ public class AttackArea : MonoBehaviour
     public int damage = 1;
     public string targetTag = "Enemy";
 
-    // hogy egy ütés alatt ugyanazt ne üssük meg 5x
     private HashSet<ZombieHealth> alreadyHit = new HashSet<ZombieHealth>();
 
     private void OnEnable()
     {
-        // minden ütés indulásakor ürítjük
         alreadyHit.Clear();
     }
 
@@ -22,7 +20,6 @@ public class AttackArea : MonoBehaviour
         ZombieHealth health = collision.GetComponent<ZombieHealth>();
         if (health == null) return;
 
-        // ha már megütöttük ebben a swingben, ne üssük újra
         if (alreadyHit.Contains(health)) return;
 
         health.TakeDamage(damage);

@@ -48,34 +48,28 @@ public class PlayerCombat : MonoBehaviour
 
         if (animator) animator.SetBool("HasAxe", true);
 
-        // ha gun, csak az ammoText referenciát adjuk át
         var gun = weaponObject.GetComponent<GunWeapon>();
         if (gun != null)
         {
             gun.ammoText = ammoText;
-            // NINCS OnEquip itt
         }
 
         UpdateCursorForCurrentWeapon();
     }
 
 
-    // 🔹 Ezt hívd MINDIG, ha fegyvert veszel le a kézről
     public void UnequipCurrent()
     {
         if (equippedSword != null)
         {
-            // ha gun, szóljunk neki
             var gun = equippedSword.GetComponent<GunWeapon>();
             if (gun != null)
                 gun.OnUnequip();
 
-            // 🔹 ANIMATOR RESET, hogy ne maradjon fél-attack állapotban
             if (weaponAnimator != null)
             {
-                // minden triggert / állapotot visszaállít
                 weaponAnimator.Rebind();
-                weaponAnimator.Update(0f);   // azonnal érvényesítve
+                weaponAnimator.Update(0f);   
             }
 
             var go = equippedSword;
@@ -113,7 +107,6 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    // csak PlayerCombat használja
     void UpdateCursorForCurrentWeapon()
     {
         if (equippedSword != null && equippedSword.TryGetComponent<GunWeapon>(out _))

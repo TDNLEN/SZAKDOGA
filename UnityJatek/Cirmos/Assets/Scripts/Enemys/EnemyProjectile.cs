@@ -12,7 +12,6 @@ public class EnemyProjectile : MonoBehaviour
     public void Init(Vector2 dir)
     {
         direction = dir.normalized;
-        // ha Rigidbody2D-vel akarod
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = direction * speed;
@@ -25,7 +24,6 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Update()
     {
-        // fallback, ha nincs RB
         if (GetComponent<Rigidbody2D>() == null)
             transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }

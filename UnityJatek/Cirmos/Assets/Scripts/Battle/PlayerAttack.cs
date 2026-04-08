@@ -3,12 +3,12 @@
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Refs")]
-    public GameObject attackArea;      // melee hitbox
-    public PlayerCombat playerCombat;  // PlayerCombat a Playeren
+    public GameObject attackArea;      
+    public PlayerCombat playerCombat;  
 
     [Header("Timing")]
-    public float attackDuration = 0.25f; // meddig legyen aktív a melee hitbox
-    public float attackCooldown = 0.4f;  // két melee ütés közt mennyi idő teljen el
+    public float attackDuration = 0.25f; 
+    public float attackCooldown = 0.4f;  
 
     private bool attacking = false;
     private float timer = 0f;
@@ -41,13 +41,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void TryAttack()
     {
-        // nincs fegyver -> semmi
         if (playerCombat == null || !playerCombat.HasWeapon)
             return;
 
         var weaponGO = playerCombat.equippedSword;
 
-        // próbáljunk ranged fegyvert keresni
         GunWeapon gun = null;
         if (weaponGO != null)
         {
@@ -56,10 +54,8 @@ public class PlayerAttack : MonoBehaviour
                 gun = weaponGO.GetComponentInChildren<GunWeapon>();
         }
 
-        // ha van pisztoly / ranged fegyver
         if (gun != null)
         {
-            // egér pozíció világkoordinátában
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = 0f;
 
@@ -67,11 +63,9 @@ public class PlayerAttack : MonoBehaviour
             if (fired)
                 playerCombat.PlayWeaponAttackAnim();
 
-            // ranged -> nem ütünk melee-t
             return;
         }
 
-        // ---- MELEE FALLBACK (balta stb.) ----
 
         if (Time.time - lastAttackTime < attackCooldown)
             return;

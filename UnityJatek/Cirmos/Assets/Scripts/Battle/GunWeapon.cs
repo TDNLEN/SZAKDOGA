@@ -69,7 +69,6 @@ public class GunWeapon : MonoBehaviour
         isEquipped = true;
         UpdateAmmoUI();
 
-        // Ha üres a tár, visszavételkor próbáljon újratölteni
         if (currentMag <= 0)
             TryStartReload();
     }

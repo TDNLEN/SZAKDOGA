@@ -17,7 +17,6 @@ public class ZombieTouchDamage : MonoBehaviour
         if (health == null) health = other.GetComponentInParent<PlayerHealth>();
         if (health == null) return;
             
-        // ha a szülõ zombi halott, ne sebezzen
         var zh = GetComponentInParent<ZombieHealth>();
         if (zh != null && zh.IsDead) return;
 

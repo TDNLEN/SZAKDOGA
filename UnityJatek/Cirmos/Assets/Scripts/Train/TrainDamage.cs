@@ -13,7 +13,6 @@ public class TrainDamage : MonoBehaviour
         controller = GetComponentInParent<TrainController>();
     }
 
-    // Ha NEM trigger a collider:
     private void OnCollisionEnter2D(Collision2D collision)
     {
         TryHit(collision.collider);
@@ -24,7 +23,6 @@ public class TrainDamage : MonoBehaviour
         TryHit(collision.collider);
     }
 
-    // Ha TRIGGER-re állítod a collidert, ezek fognak menni:
     private void OnTriggerEnter2D(Collider2D other)
     {
         TryHit(other);
@@ -38,10 +36,9 @@ public class TrainDamage : MonoBehaviour
     private void TryHit(Collider2D col)
     {
         if (controller == null) return;
-        if (!controller.IsMoving) return;               // csak ha mozog a vonat
+        if (!controller.IsMoving) return;             
         if (!col.CompareTag(enemyTag)) return;
 
-        // bármelyik enemy, amin ZombieHealth van
         var hp = col.GetComponent<ZombieHealth>();
         if (hp == null) hp = col.GetComponentInParent<ZombieHealth>();
         if (hp == null) return;

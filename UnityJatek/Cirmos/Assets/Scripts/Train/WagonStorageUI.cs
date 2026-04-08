@@ -27,8 +27,7 @@ public class WagonStorageUI : MonoBehaviour
     {
         if (currentInteractor == null) return;
 
-        // Bal klikk bárhol -> berakja a kiválasztott itemet,
-        // kivéve ha éppen egy wagon slotra kattintottál
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!IsPointerOverAnySlot())

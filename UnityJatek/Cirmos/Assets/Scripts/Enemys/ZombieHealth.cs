@@ -7,10 +7,10 @@ public class ZombieHealth : MonoBehaviour
     public int maxHealth = 5;
     private int currentHealth;
     private bool isDead = false;
-    public bool IsDead => isDead; // <-- külső kódhoz
+    public bool IsDead => isDead; 
 
     [Header("Health bar")]
-    public Transform barFill; // piros csík (Transform, nem UI)
+    public Transform barFill; 
     private float startScaleX;
 
     [Header("Animator")]
@@ -107,9 +107,8 @@ public class ZombieHealth : MonoBehaviour
     private IEnumerator StopKnockback()
     {
         yield return new WaitForSeconds(knockbackDuration);
-        if (rb != null) rb.linearVelocity = Vector2.zero; // <-- helyes property
+        if (rb != null) rb.linearVelocity = Vector2.zero; 
     }
 
-    // Ha anim eventtel akarsz törölni:
     public void OnDeathEnd() => Destroy(gameObject);
 }

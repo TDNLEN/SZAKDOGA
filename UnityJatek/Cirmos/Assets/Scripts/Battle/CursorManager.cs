@@ -3,8 +3,8 @@
 public class CursorManager : MonoBehaviour
 {
     [Header("Textures")]
-    public Texture2D defaultCursor;   // sima kurzor (vagy hagyd nullon → rendszer kurzor)
-    public Texture2D crosshairCursor; // a piros célkereszt
+    public Texture2D defaultCursor;  
+    public Texture2D crosshairCursor; 
 
     [Header("Hotspots (pixelben)")]
     public Vector2 defaultHotspot = Vector2.zero;
@@ -33,7 +33,6 @@ public class CursorManager : MonoBehaviour
 
         if (instance.defaultCursor == null)
         {
-            // null → visszaáll a rendszer alap kurzorára
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
         else

@@ -11,8 +11,8 @@ public class UIButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
 
     [Header("Audio")]
     public AudioSource audioSource;
-    public AudioClip hoverSound;   // katt1.mp3
-    public AudioClip clickSound;   // katt2.mp3
+    public AudioClip hoverSound;   
+    public AudioClip clickSound;  
 
     private RectTransform rectTransform;
     private Vector3 targetScale;

@@ -4,11 +4,11 @@ using TMPro;
 public class PlayerWallet : MonoBehaviour
 {
     [Header("Money")]
-    public int coins = 0;                     // kezdetben 0 pénz
+    public int coins = 0;                 
 
     [Header("UI")]
-    public TextMeshProUGUI coinText;         // ide húzd a UI szöveget (pl. "CoinsText")
-    public GameObject coinPanel;             // opcionális: a háttér panel (ha van)
+    public TextMeshProUGUI coinText;        
+    public GameObject coinPanel;          
 
     private void Start()
     {
@@ -37,8 +37,7 @@ public class PlayerWallet : MonoBehaviour
         if (coinText != null)
             coinText.text = coins.ToString();
 
-        // ha akarod: panel elrejtése, ha 0 a pénz
         if (coinPanel != null)
-            coinPanel.SetActive(true);   // vagy: coins > 0-ra állítsd, ha úgy akarod eltüntetni
+            coinPanel.SetActive(true);  
     }
 }

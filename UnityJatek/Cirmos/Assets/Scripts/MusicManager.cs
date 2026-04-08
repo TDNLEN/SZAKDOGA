@@ -103,7 +103,6 @@ public class MusicManager : MonoBehaviour
             return;
         }
 
-        // ha van GameTime, abból is szinkronizáljuk az állapotot
         if (GameTime.Instance != null)
             isNight = GameTime.Instance.IsNight;
 

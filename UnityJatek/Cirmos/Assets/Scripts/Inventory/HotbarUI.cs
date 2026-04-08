@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class HotbarUI : MonoBehaviour
 {
     [Header("References")]
-    public Image[] slotBGs;        // Slot0..Slot4 háttér (Image)
-    public Image[] slotIcons;      // Slot0..Slot4/Icon (Image)
-    public RectTransform selector; // kijelölõ keret
+    public Image[] slotBGs;      
+    public Image[] slotIcons;      
+    public RectTransform selector; 
 
     [Header("Colors")]
     public Color normalColor = new Color(1f, 1f, 1f, 0.2f);
@@ -16,13 +16,11 @@ public class HotbarUI : MonoBehaviour
 
     private void Start()
     {
-        // Biztonság: az ikonok és a slotok száma egyezzen
         if (slotIcons != null && slotBGs != null && slotIcons.Length != slotBGs.Length)
         {
             Debug.LogWarning("[HotbarUI] slotIcons és slotBGs hossza eltér – ellenõrizd az Inspectorban!");
         }
 
-        // ikonok alapállapot
         if (slotIcons != null)
         {
             for (int i = 0; i < slotIcons.Length; i++)
@@ -57,14 +55,12 @@ public class HotbarUI : MonoBehaviour
         index = Mathf.Clamp(index, 0, slotBGs.Length - 1);
         SelectedIndex = index;
 
-        // Selector átrakása a kiválasztott slotra
         if (selector)
         {
             selector.SetParent(slotBGs[SelectedIndex].transform, false);
             selector.anchoredPosition = Vector2.zero;
         }
 
-        // háttér színkiemelés
         for (int i = 0; i < slotBGs.Length; i++)
             slotBGs[i].color = (i == SelectedIndex) ? selectedColor : normalColor;
     }

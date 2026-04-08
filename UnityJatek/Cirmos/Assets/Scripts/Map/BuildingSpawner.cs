@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class BuildingSpawner : MonoBehaviour
 {
-    public GameObject buildingPrefab;   // ide húzd be a kész épület prefab-ot
-    public float spacing = 1000f;       // minden 1000 egységen legyen épület
-    public int spawnCount = 10;         // mennyit hozzon létre elõre
-    public float buildingY = 0f;        // milyen magasságban legyen (a sínekhez igazítva)
+    public GameObject buildingPrefab;  
+    public float spacing = 1000f;    
+    public int spawnCount = 10;       
+    public float buildingY = 0f;      
 
     private void Start()
     {

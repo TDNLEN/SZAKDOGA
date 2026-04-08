@@ -58,7 +58,6 @@ public class InfiniteHouseSpawner : MonoBehaviour
 
         Vector2Int playerChunk = GetChunkCoord(player.position.x);
 
-        // betöltés
         for (int x = -loadRadius; x <= loadRadius; x++)
         {
             Vector2Int chunk = new Vector2Int(playerChunk.x + x, 0);
@@ -67,7 +66,6 @@ public class InfiniteHouseSpawner : MonoBehaviour
             EnsureChunkInstantiated(chunk);
         }
 
-        // kirakodás
         List<Vector2Int> toRemove = new List<Vector2Int>();
 
         foreach (var kvp in activeChunkHouses)
@@ -137,7 +135,6 @@ public class InfiniteHouseSpawner : MonoBehaviour
         SpawnedHouseData data = new SpawnedHouseData();
         data.generated = false;
 
-        // determinisztikus random a chunkhoz
         int seed = chunk.x * 73856093 ^ 19349663;
         System.Random rng = new System.Random(seed);
 
@@ -189,7 +186,6 @@ public class InfiniteHouseSpawner : MonoBehaviour
                     blocked = true;
             }
 
-            // ellenõrzés már ismert chunk házai ellen is
             if (!blocked)
             {
                 Bounds candidate = new Bounds(center, new Vector3(checkSize.x, checkSize.y, 1f));

@@ -5,7 +5,7 @@ public class MainMenuController : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // <-- állítsd be a tényleges játék scene nevét
+        SceneManager.LoadScene("GameScene"); 
     }
 
     public void QuitGame()

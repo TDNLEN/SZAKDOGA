@@ -7,10 +7,10 @@ public class RailGenerator : MonoBehaviour
     public Transform player;
 
     [Header("Rail Settings")]
-    public Sprite railSprite;          // ide húzd be a sín sprite-ot
-    public float tileWidth = 1f;       // a sprite szélessége (X tengely mentén)
-    public float railY = 0f;           // magasság, ahol a sínek mennek
-    public int loadRadius = 20;        // hány sín legyen a player körül
+    public Sprite railSprite;          
+    public float tileWidth = 1f;      
+    public float railY = 0f;        
+    public int loadRadius = 20;        
 
     private Dictionary<int, GameObject> spawnedRails = new Dictionary<int, GameObject>();
 
@@ -20,7 +20,6 @@ public class RailGenerator : MonoBehaviour
 
         int playerTileX = Mathf.RoundToInt(player.position.x / tileWidth);
 
-        // balról jobbra megnézzük, melyik sín kell
         for (int x = playerTileX - loadRadius; x <= playerTileX + loadRadius; x++)
         {
             if (!spawnedRails.ContainsKey(x))
@@ -29,7 +28,6 @@ public class RailGenerator : MonoBehaviour
             }
         }
 
-        // eltávolítjuk, ami túl messze van
         List<int> toRemove = new List<int>();
         foreach (var kvp in spawnedRails)
         {
@@ -55,9 +53,8 @@ public class RailGenerator : MonoBehaviour
         var sr = railGO.AddComponent<SpriteRenderer>();
         sr.sprite = railSprite;
 
-        // 🔹 kifejezetten a "Rails" sorting layerre tesszük
         sr.sortingLayerName = "Rails";
-        sr.sortingOrder = -5;   // ezen a layeren belül az alap érték bőven elég
+        sr.sortingOrder = -5;   
 
         spawnedRails.Add(x, railGO);
     }

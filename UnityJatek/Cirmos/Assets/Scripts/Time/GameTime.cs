@@ -11,7 +11,7 @@ public class GameTime : MonoBehaviour
     public float realSecondsPerHalfHour = 10f;
 
     [Range(0, 23)] public int startHour = 12;
-    [Range(0, 1)] public int startHalfIndex = 0; // 0 = :00, 1 = :30
+    [Range(0, 1)] public int startHalfIndex = 0; 
 
     [Header("UI")]
     public TMP_Text clockText;

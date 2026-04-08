@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
     [Header("Refs")]
-    public GameObject pauseMenuUI; // ide húzd be a PauseMenu GameObjectet
-    public CanvasGroup dimBackground; // opcionális, ha fokozatosan sötétíted
+    public GameObject pauseMenuUI; 
+    public CanvasGroup dimBackground; 
 
     private bool isPaused = false;
 
@@ -25,13 +25,12 @@ public class PauseMenuController : MonoBehaviour
         if (pauseMenuUI == null) return;
 
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f; // játék megáll
+        Time.timeScale = 0f; 
         isPaused = true;
 
-        // ha van CanvasGroup az elsötétítéshez:
         if (dimBackground != null)
         {
-            dimBackground.alpha = 0.5f; // áttetszõ fekete
+            dimBackground.alpha = 0.5f; 
         }
     }
 
@@ -40,13 +39,13 @@ public class PauseMenuController : MonoBehaviour
         if (pauseMenuUI == null) return;
 
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f; // játék újraindul
+        Time.timeScale = 1f;
         isPaused = false;
     }
 
     public void QuitGame()
     {
-        Time.timeScale = 1f; // biztos, ami biztos
-        SceneManager.LoadScene("Main_menu"); // vissza a fõmenübe
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene("Main_menu"); 
     }
 }

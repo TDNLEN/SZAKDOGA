@@ -63,7 +63,6 @@ public sealed class PlayerInputReader : MonoBehaviour
             return;
         }
 
-        // Elinduláskor azonnal szóljon
         if (!wasMovingLastFrame)
         {
             PlayWalkSound();
