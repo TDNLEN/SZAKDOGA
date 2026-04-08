@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\fuelitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\fuelitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\playmode\\playerdeathuiplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|solutionrelative:assets\\playmode\\playerdeathuiplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\traincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\traincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\traindamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\traindamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\trainwagonfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\trainwagonfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\wagonstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\wagonstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\wagonstorageinteractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\wagonstorageinteractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\scripts\\train\\wagonstorageui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50960FB7-8EA2-2DEF-E0C5-441831C3E9DC}|Game.Runtime.csproj|solutionrelative:assets\\scripts\\train\\wagonstorageui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\playmode\\gametimenightintegrationplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|solutionrelative:assets\\playmode\\gametimenightintegrationplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "WagonStorageUI.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageUI.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\WagonStorageUI.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageUI.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\WagonStorageUI.cs",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAuwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:30.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "WagonStorageInteractor.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\WagonStorageInteractor.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:30.592Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WagonStorage.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorage.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\WagonStorage.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\WagonStorage.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\WagonStorage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:30.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TrainWagonFollower.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\TrainWagonFollower.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:30.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TrainDamage.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainDamage.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainDamage.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainDamage.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\TrainDamage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:30.032Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TrainController.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\TrainController.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\TrainController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\TrainController.cs",
-              "ViewState": "AgIAAD8BAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Title": "GameTimeNightIntegrationPlayModeTests.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "RelativeToolTip": "Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:29.758Z",
+              "WhenOpened": "2026-04-08T20:56:41.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FuelItem.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\FuelItem.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Train\\FuelItem.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Scripts\\Train\\FuelItem.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Train\\FuelItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
+              "Title": "PlayerDeathUiPlayModeTests.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "RelativeToolTip": "Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:05:29.434Z",
+              "WhenOpened": "2026-04-08T20:54:04.423Z",
               "EditorCaption": ""
             }
           ]

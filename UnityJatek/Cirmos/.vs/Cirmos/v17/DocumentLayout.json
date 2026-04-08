@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\tests\\wagonstoragetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|solutionrelative:assets\\tests\\wagonstoragetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\playmode\\playerdeathuiplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|solutionrelative:assets\\playmode\\playerdeathuiplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\tests\\playerwallettests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|solutionrelative:assets\\tests\\playerwallettests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\tests\\playerinventoryammotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|solutionrelative:assets\\tests\\playerinventoryammotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|c:\\users\\felhasznalo\\documents\\github\\szakdoga\\unityjatek\\cirmos\\assets\\tests\\gametimetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41B2B0F8-A8A0-B481-C554-C56162A123B9}|Tests.csproj|solutionrelative:assets\\tests\\gametimetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\assets\\playmode\\gametimenightintegrationplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69633724-39B5-B3DC-E0A8-C21D8F48F265}|Cirmos.PlayModeTests.asmdef.csproj|solutionrelative:assets\\playmode\\gametimenightintegrationplaymodetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameTimeTests.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\GameTimeTests.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\GameTimeTests.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\GameTimeTests.cs",
-              "RelativeToolTip": "Assets\\Tests\\GameTimeTests.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:09:32.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerInventoryAmmoTests.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\PlayerInventoryAmmoTests.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\PlayerInventoryAmmoTests.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\PlayerInventoryAmmoTests.cs",
-              "RelativeToolTip": "Assets\\Tests\\PlayerInventoryAmmoTests.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:09:32.745Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayerWalletTests.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\PlayerWalletTests.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\PlayerWalletTests.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\PlayerWalletTests.cs",
-              "RelativeToolTip": "Assets\\Tests\\PlayerWalletTests.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Title": "GameTimeNightIntegrationPlayModeTests.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "RelativeToolTip": "Assets\\PlayMode\\GameTimeNightIntegrationPlayModeTests.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAA9wGIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:09:32.572Z",
+              "WhenOpened": "2026-04-08T20:56:41.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WagonStorageTests.cs",
-              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\WagonStorageTests.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\WagonStorageTests.cs",
-              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\Tests\\WagonStorageTests.cs",
-              "RelativeToolTip": "Assets\\Tests\\WagonStorageTests.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAkwHwAAAAAAAAAAAAAAA==",
+              "Title": "PlayerDeathUiPlayModeTests.cs",
+              "DocumentMoniker": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "ToolTip": "C:\\Users\\Felhasznalo\\Documents\\GitHub\\SZAKDOGA\\UnityJatek\\Cirmos\\Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "RelativeToolTip": "Assets\\PlayMode\\PlayerDeathUiPlayModeTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T20:09:32.256Z",
+              "WhenOpened": "2026-04-08T20:54:04.423Z",
               "EditorCaption": ""
             }
           ]
